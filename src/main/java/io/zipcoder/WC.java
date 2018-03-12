@@ -1,5 +1,6 @@
 package io.zipcoder;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.HashMap;
@@ -10,13 +11,15 @@ public class WC {
 
     private Iterator<String> si;
     private String file;// = WC.class.getResource("someTextFile.txt").getFile();
+    private String entireFile;
 
     // Nullary constructor for testing
     public WC(){}
 
     public WC(String fileName) {
         try {
-            this.si = new Scanner(new FileReader(fileName));
+            //this.si = new Scanner(new FileReader(fileName));
+            this.entireFile = new Scanner(new File(WC.class.getResource("/someTextFile.txt").getFile())).useDelimiter("\\A").next();
         } catch (FileNotFoundException e) {
             System.out.println(fileName + " Does Not Exist");
             System.exit(-1);
@@ -29,13 +32,14 @@ public class WC {
 //    }
 
     public void logic() {
-        file = si.next();
+        System.out.println(entireFile);
+        file = entireFile;
         HashMap<String, Integer> wordsAndAmounts = new HashMap<String, Integer>();
         String[] arrayOfWords = file.split(" ");
         for (int j = 0; j < arrayOfWords.length; j++) {
             String currentWord = arrayOfWords[j];
             currentWord.toLowerCase();
-            if (currentWord.charAt(arrayOfWords[j].length()-1) == '.') {
+            if (currentWord.charAt(currentWord.length()-1) == '.') {
                 currentWord = arrayOfWords[j].substring(0, currentWord.length()-1);
             }
             for (int i = 0; i < wordsAndAmounts.size(); i++) {
@@ -50,6 +54,7 @@ public class WC {
         }
     }
 
+    // psvm temporarily made for testing purposes
     public static void main(String[] args) {
         WC wc = new WC(WC.class.getResource("/someTextFile.txt").getFile());
         wc.logic();
