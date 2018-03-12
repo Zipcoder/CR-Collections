@@ -6,13 +6,13 @@ import org.junit.Test;
 import java.util.Stack;
 
 import static io.zipcoder.ParenChecker.CheckParentesis;
+import static io.zipcoder.ParenChecker.openingAndClosing;
 
 public class ParenCheckerTest {
 
     @Test
     public void parenCheckerTest1() {
         // Given
-        Stack<Character> stack = new Stack<Character>();
         String parenString = "()";
 
         // When
@@ -25,7 +25,6 @@ public class ParenCheckerTest {
     @Test
     public void parenCheckerTest2() {
         // Given
-        Stack<Character> stack = new Stack<Character>();
         String parenString = "()(";
 
         // When
@@ -38,11 +37,9 @@ public class ParenCheckerTest {
     @Test
     public void parenCheckerTest3() {
         // Given
-        Stack<Character> stack = new Stack<Character>();
         String parenString = ")()(";
 
         //When
-        Assert.assertEquals(true, stack.isEmpty());
         Boolean actual = CheckParentesis(parenString);
 
         // Then
@@ -52,11 +49,9 @@ public class ParenCheckerTest {
     @Test
     public void parenCheckerTest4() {
         // Given
-        Stack<Character> stack = new Stack<Character>();
         String parenString = "a(d)a";
 
         //When
-        Assert.assertEquals(true, stack.isEmpty());
         Boolean actual = CheckParentesis(parenString);
 
         // Then
@@ -66,11 +61,9 @@ public class ParenCheckerTest {
     @Test
     public void parenCheckerTest5() {
         // Given
-        Stack<Character> stack = new Stack<Character>();
         String parenString = "a(da";
 
         //When
-        Assert.assertEquals(true, stack.isEmpty());
         Boolean actual = CheckParentesis(parenString);
 
         // Then
@@ -79,13 +72,11 @@ public class ParenCheckerTest {
 
     @Test
     public void openingAndClosing1() {
-        // Given
-        Stack<Character> stack = new Stack<Character>();
-        String parenString = "({()})";
+        // Given;
+        String openingAndClosingString = "({()})";
 
         //When
-        Assert.assertEquals(true, stack.isEmpty());
-        Boolean actual = CheckParentesis(parenString);
+        Boolean actual = openingAndClosing(openingAndClosingString);
 
         // Then
         Assert.assertTrue(actual);
@@ -94,12 +85,10 @@ public class ParenCheckerTest {
     @Test
     public void openingAndClosing2() {
         // Given
-        Stack<Character> stack = new Stack<Character>();
-        String parenString = "({)})";
+        String openingAndClosingString = "({)})";
 
         //When
-        Assert.assertEquals(true, stack.isEmpty());
-        Boolean actual = CheckParentesis(parenString);
+        Boolean actual = openingAndClosing(openingAndClosingString);
 
         // Then
         Assert.assertFalse(actual);
@@ -108,12 +97,10 @@ public class ParenCheckerTest {
     @Test
     public void openingAndClosing3() {
         // Given
-        Stack<Character> stack = new Stack<Character>();
-        String parenString = "\"\'({})\'\"";
+        String openingAndClosingString = "\"\'({})\'\"";
 
         //When
-        Assert.assertEquals(true, stack.isEmpty());
-        Boolean actual = CheckParentesis(parenString);
+        Boolean actual = openingAndClosing(openingAndClosingString);
 
         // Then
         Assert.assertTrue(actual);
@@ -123,12 +110,10 @@ public class ParenCheckerTest {
     @Test
     public void openingAndClosing4() {
         // Given
-        Stack<Character> stack = new Stack<Character>();
-        String parenString = "c\"c\'c(d{a}d)d\'c\"c";
+        String openingAndClosingString = "c\"c\'c(d{a}d)d\'c\"c";
 
         //When
-        Assert.assertEquals(true, stack.isEmpty());
-        Boolean actual = CheckParentesis(parenString);
+        Boolean actual = openingAndClosing(openingAndClosingString);
 
         // Then
         Assert.assertTrue(actual);
@@ -137,12 +122,10 @@ public class ParenCheckerTest {
     @Test
     public void openingAndClosing5() {
         // Given
-        Stack<Character> stack = new Stack<Character>();
-        String parenString = "c\"c\'c}d)d\'c\"c";
+        String openingAndClosingString = "c\"c\'c}d)d\'c\"c";
 
         //When
-        Assert.assertEquals(true, stack.isEmpty());
-        Boolean actual = CheckParentesis(parenString);
+        Boolean actual = openingAndClosing(openingAndClosingString);
 
         // Then
         Assert.assertFalse(actual);
