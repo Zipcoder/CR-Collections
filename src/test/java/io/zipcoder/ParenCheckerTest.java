@@ -50,4 +50,39 @@ public class ParenCheckerTest {
         Assert.assertFalse(ParenChecker.parenthesesAreAllClosed(test));
     }
 
+    @Test
+    public void allCharactersAreClosedTest(){
+        //Given
+        String test = "<9>(8){*}[+]\"7\"'1'";
+
+        //When
+
+        //Then
+        Assert.assertTrue(ParenChecker.allCharactersAreClosed(test));
+    }
+
+    @Test
+    public void allCharactersAreNotClosedTest(){
+        //Given
+        String test = "<9>(8){*}[+]\"7'1'";
+
+        //When
+
+        //Then
+        Assert.assertFalse(ParenChecker.allCharactersAreClosed(test));
+    }
+
+    @Test
+    public void allCharactersAreNotClosedTest2(){
+        //Given
+        String test = "'<9>(8){*}[+]\"7\"'1'";
+
+        //When
+
+        //Then
+        Assert.assertFalse(ParenChecker.allCharactersAreClosed(test));
+    }
+
+
+
 }
