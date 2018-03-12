@@ -10,8 +10,8 @@ public enum Enclosure {
     PAREN("(", ")"),
     BRACKET("[", "]"),
     BRACE("{", "}"),
-    ANGLE("<",">"),
-    SQUOTE("'","'"),
+    ANGLE("<", ">"),
+    SQUOTE("'", "'"),
     DQUOTE("\"", "\"");
 
     private String open;

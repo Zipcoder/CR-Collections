@@ -2,8 +2,6 @@ package io.zipcoder;
 
 import org.junit.Test;
 
-import java.nio.file.FileSystems;
-
 public class WCTest {
 
     @Test

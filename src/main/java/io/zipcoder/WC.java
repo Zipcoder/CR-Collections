@@ -2,10 +2,7 @@ package io.zipcoder;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.nio.file.FileSystems;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Scanner;
+import java.util.*;
 
 public class WC {
     private final String delimRegEx = "[^\\w]+";
@@ -43,9 +40,19 @@ public class WC {
             }
         }
     }
-    
+
+    public List<Map.Entry<String, Integer>> getSortedEntries() {
+        List<Map.Entry<String, Integer>> sortedWords = new ArrayList<>(hash.entrySet());
+        sortedWords.sort(Comparator.comparing(Map.Entry<String, Integer>::getValue).reversed());
+        return sortedWords;
+    }
+
     public String toString() {
-        return hash.toString();
+        StringBuilder sb = new StringBuilder();
+        getSortedEntries().forEach((Map.Entry<String, Integer> e) ->
+                sb.append(String.format("%3d : %s\n", e.getValue(), e.getKey()))
+        );
+        return sb.toString();
     }
 
     public void print() {
