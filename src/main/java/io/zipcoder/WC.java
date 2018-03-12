@@ -3,9 +3,7 @@ package io.zipcoder;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Scanner;
+import java.util.*;
 
 public class WC {
     private Iterator<String> si;
@@ -24,8 +22,8 @@ public class WC {
     }
 
 
-    public HashMap<String,Integer> countWords(){
-        HashMap<String,Integer> outputMap = new HashMap<>();
+    public ArrayList <Map.Entry<String,Integer>> countWords(){
+        LinkedHashMap<String,Integer> outputMap = new LinkedHashMap<>();
 
         while(si.hasNext()){
             String word = si.next().toLowerCase().replaceAll("\\.", "");
@@ -38,7 +36,11 @@ public class WC {
             }
         }
 
-        return outputMap;
+        ArrayList <Map.Entry<String,Integer>> outputList = new ArrayList<>(outputMap.entrySet());
+        outputList.sort((o1,o2) -> o2.getValue().compareTo(o1.getValue()));
+
+
+        return outputList;
     }
 
 

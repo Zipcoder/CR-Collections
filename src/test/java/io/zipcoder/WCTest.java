@@ -4,18 +4,15 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.TreeMap;
+import java.util.*;
 
 public class WCTest {
 
-    HashMap<String,Integer> testOutput;
+    LinkedHashMap<String,Integer> testOutput;
 
     @Before
     public void setUp(){
-        testOutput = new HashMap<>();
+        testOutput = new LinkedHashMap<>();
         testOutput.put("birb",3);
         testOutput.put("stinky",2);
         testOutput.put("henlo",1);
@@ -32,10 +29,12 @@ public class WCTest {
         WC testCounter = new WC(WC.class.getResource("/testFile.txt").getFile());
 
         //When
-        HashMap<String,Integer> expected = testOutput;
-        HashMap<String,Integer> actual = testCounter.countWords();
+        ArrayList <Map.Entry<String,Integer>> expected = new ArrayList<>(testOutput.entrySet());
+        ArrayList <Map.Entry<String,Integer>> actual = testCounter.countWords();
 
         //Then
+        System.out.println(actual);
+        System.out.println(expected);
         Assert.assertEquals(expected,actual);
 
     }
