@@ -10,16 +10,28 @@ public class ParenChecker {
         this.charStack = charStack;
     }
 
-    public boolean logic() {
+    public boolean logicChecker() {
+        if ((logic('(', ')')) &&
+                logic('{', '}') &&
+                logic('[', ']') &&
+                logic('<', '>') &&
+                logic('"', '"') &&
+                logic('\'', '\'')) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean logic(char firstChar, char secondChar) {
         int parenCount = 0;
         for (int i = 0; i < charStack.size(); i++) {
             if (parenCount < 0) {
                 return false;
             }
-            if (charStack.get(i).equals('(')) {
+            if (charStack.get(i).equals(firstChar)) {
                 parenCount++;
             }
-            if (charStack.get(i).equals(')')) {
+            if (charStack.get(i).equals(secondChar)) {
                 parenCount--;
             }
         }

@@ -21,7 +21,7 @@ public class ParenCheckerTest {
         charArrayList.add(')');
         stack.addAll(charArrayList);
         ParenChecker parenChecker = new ParenChecker(stack);
-        Assert.assertTrue(parenChecker.logic());
+        Assert.assertTrue(parenChecker.logicChecker());
     }
 
     @Test
@@ -38,7 +38,7 @@ public class ParenCheckerTest {
         charArrayList.add(')');
         stack.addAll(charArrayList);
         ParenChecker parenChecker = new ParenChecker(stack);
-        Assert.assertTrue(!(parenChecker.logic()));
+        Assert.assertTrue(!(parenChecker.logicChecker()));
     }
 
     @Test
@@ -56,7 +56,7 @@ public class ParenCheckerTest {
         charArrayList.add(')');
         stack.addAll(charArrayList);
         ParenChecker parenChecker = new ParenChecker(stack);
-        Assert.assertTrue(!(parenChecker.logic()));
+        Assert.assertTrue(!(parenChecker.logicChecker()));
     }
 
 }
