@@ -59,4 +59,84 @@ public class ParenCheckerTest {
         Assert.assertTrue(!(parenChecker.logicChecker()));
     }
 
+    @Test
+    public void curlyBracketChecker() {
+        Stack stack = new Stack();
+        ArrayList charArrayList = new ArrayList();
+        charArrayList.add('1');
+        charArrayList.add('d');
+        charArrayList.add('{');
+        charArrayList.add('f');
+        charArrayList.add('(');
+        charArrayList.add('}');
+        charArrayList.add(')');
+        stack.addAll(charArrayList);
+        ParenChecker parenChecker = new ParenChecker(stack);
+        Assert.assertTrue(parenChecker.logicChecker());
+    }
+
+    @Test
+    public void bracketChecker() {
+        Stack stack = new Stack();
+        ArrayList charArrayList = new ArrayList();
+        charArrayList.add('1');
+        charArrayList.add('d');
+        charArrayList.add('[');
+        charArrayList.add('f');
+        charArrayList.add('(');
+        charArrayList.add(']');
+        charArrayList.add(')');
+        stack.addAll(charArrayList);
+        ParenChecker parenChecker = new ParenChecker(stack);
+        Assert.assertTrue(parenChecker.logicChecker());
+    }
+
+    @Test
+    public void diamondChecker() {
+        Stack stack = new Stack();
+        ArrayList charArrayList = new ArrayList();
+        charArrayList.add('1');
+        charArrayList.add('d');
+        charArrayList.add('[');
+        charArrayList.add('f');
+        charArrayList.add('<');
+        charArrayList.add(']');
+        charArrayList.add('>');
+        stack.addAll(charArrayList);
+        ParenChecker parenChecker = new ParenChecker(stack);
+        Assert.assertTrue(parenChecker.logicChecker());
+    }
+
+    @Test
+    public void doubleQuoteChecker() {
+        Stack stack = new Stack();
+        ArrayList charArrayList = new ArrayList();
+        charArrayList.add('1');
+        charArrayList.add('d');
+        charArrayList.add('"');
+        charArrayList.add('f');
+        charArrayList.add('(');
+        charArrayList.add('"');
+        charArrayList.add(')');
+        stack.addAll(charArrayList);
+        ParenChecker parenChecker = new ParenChecker(stack);
+        Assert.assertTrue(parenChecker.logicChecker());
+    }
+
+    @Test
+    public void singleQuoteChecker() {
+        Stack stack = new Stack();
+        ArrayList charArrayList = new ArrayList();
+        charArrayList.add('1');
+        charArrayList.add('d');
+        charArrayList.add('\'');
+        charArrayList.add('f');
+        charArrayList.add('(');
+        charArrayList.add('\'');
+        charArrayList.add(')');
+        stack.addAll(charArrayList);
+        ParenChecker parenChecker = new ParenChecker(stack);
+        Assert.assertTrue(parenChecker.logicChecker());
+    }
+
 }
