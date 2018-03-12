@@ -1,5 +1,6 @@
 package io.zipcoder;
 
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Iterator;
@@ -16,7 +17,6 @@ public class WC {
             System.exit(-1);
         }
     }
-
     public WC(Iterator<String> si) {
         this.si = si;
     }
