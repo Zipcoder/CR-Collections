@@ -29,21 +29,21 @@ public class WC {
 
     public void logic() {
         HashMap<String, Integer> wordsAndAmounts = new HashMap<String, Integer>();
-        while (!(file.equals(null))) {
-            String[] arrayOfWords = file.split(" ");
-            // Ths for loop makes all words lower case for better counting and removes periods from
-            for (int j = 0; j < arrayOfWords.length; j++) {
-                arrayOfWords[j].toLowerCase();
-                if (arrayOfWords[j].charAt(arrayOfWords[j].length()-1) == '.') {
-                    arrayOfWords[j] = arrayOfWords[j].substring(0, arrayOfWords[j].length()-1);
-                }
+        String[] arrayOfWords = file.split(" ");
+        // Ths for loop makes all words lower case for better counting and removes periods from the ends of any words that have them
+        for (int j = 0; j < arrayOfWords.length; j++) {
+            String currentWord = arrayOfWords[j];
+            currentWord.toLowerCase();
+            if (currentWord.charAt(arrayOfWords[j].length()-1) == '.') {
+                currentWord = arrayOfWords[j].substring(0, currentWord.length()-1);
             }
             for (int i = 0; i < wordsAndAmounts.size(); i++) {
-                if (wordsAndAmounts.containsKey()) {
-
-                }
+                int count = wordsAndAmounts.containsKey(currentWord) ? wordsAndAmounts.get(currentWord) : 0;
+                wordsAndAmounts.put(currentWord, count + 1);
             }
         }
+        // Print out all words next to how many times they appear
+
     }
 
 }
