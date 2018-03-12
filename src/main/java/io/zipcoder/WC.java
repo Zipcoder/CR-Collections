@@ -32,23 +32,19 @@ public class WC {
 //    }
 
     public void logic() {
-        System.out.println(entireFile);
         HashMap<String, Integer> wordsAndAmounts = new HashMap<String, Integer>();
         String[] arrayOfWords = entireFile.split(" ");
-        System.out.println(Arrays.toString(arrayOfWords));
         for (int j = 0; j < arrayOfWords.length; j++) {
             String currentWord = arrayOfWords[j];
-            currentWord.toLowerCase();
+            currentWord = currentWord.toLowerCase();
             if (currentWord.charAt(currentWord.length()-1) == '.') {
                 currentWord = arrayOfWords[j].substring(0, currentWord.length()-1);
             }
-            for (int i = 0; i < wordsAndAmounts.size(); i++) {
-                int count = wordsAndAmounts.containsKey(currentWord) ? wordsAndAmounts.get(currentWord) : 0;
-                wordsAndAmounts.put(currentWord, count + 1);
-            }
+            int count = wordsAndAmounts.containsKey(currentWord) ? wordsAndAmounts.get(currentWord) : 0;
+            wordsAndAmounts.put(currentWord, count + 1);
         }
         // Print out all words next to how many times they appear
-        for (String  name : wordsAndAmounts.keySet()){
+        for (String name : wordsAndAmounts.keySet()){
             String value = wordsAndAmounts.get(name).toString();
             System.out.println(name + " " + value);
         }
