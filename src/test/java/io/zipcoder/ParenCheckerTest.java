@@ -62,6 +62,17 @@ public class ParenCheckerTest {
     }
 
     @Test
+    public void allCharactersAreClosedTest2(){
+        //Given
+        String test = "<<<((({{{[[['''\"\"\">>>]]]}}})))\"\"\"'''";
+
+        //When
+
+        //Then
+        Assert.assertTrue(ParenChecker.allCharactersAreClosed(test));
+    }
+
+    @Test
     public void allCharactersAreNotClosedTest(){
         //Given
         String test = "<9>(8){*}[+]\"7'1'";
