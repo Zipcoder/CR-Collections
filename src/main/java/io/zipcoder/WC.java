@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 public class WC {
+
     private Iterator<String> si;
 
     public WC(String fileName) {
@@ -17,7 +18,9 @@ public class WC {
         }
     }
 
+
     public WC(Iterator<String> si) {
         this.si = si;
+
     }
 }
