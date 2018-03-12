@@ -42,9 +42,6 @@ public class ParenChecker {
                 seenCharacters.add(currentChar);
             }
         }
-        for(Character c : seenCharacters){
-            System.out.println(c);
-        }
 
         return seenCharacters.isEmpty();
     }
