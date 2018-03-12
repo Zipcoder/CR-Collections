@@ -2,7 +2,7 @@ package io.zipcoder;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -10,14 +10,14 @@ import java.util.Scanner;
 public class WC {
 
     private Iterator<String> si;
-    private String file;// = WC.class.getResource("someTextFile.txt").getFile();
-    private String entireFile;
+    private String entireFile;// = WC.class.getResource("someTextFile.txt").getFile();
 
     // Nullary constructor for testing
     public WC(){}
 
     public WC(String fileName) {
         try {
+            // NOTED OUT TEMPORARILY BECAUSE AM DINGUS
             //this.si = new Scanner(new FileReader(fileName));
             this.entireFile = new Scanner(new File(WC.class.getResource("/someTextFile.txt").getFile())).useDelimiter("\\A").next();
         } catch (FileNotFoundException e) {
@@ -26,16 +26,16 @@ public class WC {
         }
     }
 
-    // NOTED OUT BECAUSE STRING TESTS ARE FOR WEE BABIES
+    // NOTED OUT BECAUSE STRING ITERATOR IS BLEH
 //    public WC(Iterator<String> si) {
 //        this.si = si;
 //    }
 
     public void logic() {
         System.out.println(entireFile);
-        file = entireFile;
         HashMap<String, Integer> wordsAndAmounts = new HashMap<String, Integer>();
-        String[] arrayOfWords = file.split(" ");
+        String[] arrayOfWords = entireFile.split(" ");
+        System.out.println(Arrays.toString(arrayOfWords));
         for (int j = 0; j < arrayOfWords.length; j++) {
             String currentWord = arrayOfWords[j];
             currentWord.toLowerCase();
@@ -48,7 +48,7 @@ public class WC {
             }
         }
         // Print out all words next to how many times they appear
-        for (String  name: wordsAndAmounts.keySet()){
+        for (String  name : wordsAndAmounts.keySet()){
             String value = wordsAndAmounts.get(name).toString();
             System.out.println(name + " " + value);
         }

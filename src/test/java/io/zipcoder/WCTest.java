@@ -8,6 +8,7 @@ import java.util.Arrays;
 
 public class WCTest {
 
+    // What am I testing
     @Test
     public void printWC() {
         WC wc = new WC(WC.class.getResource("/someTextFile.txt").getFile());
