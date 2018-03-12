@@ -10,7 +10,7 @@ public class WCTest {
 
     @Test
     public void printWC() {
-        WC wc = new WC();
+        WC wc = new WC(WC.class.getResource("/someTextFile.txt").getFile());
         wc.logic();
     }
 

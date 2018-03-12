@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class WC {
 
     private Iterator<String> si;
-    private String file = WC.class.getResource("someTextFile.txt").getFile();
+    private String file;// = WC.class.getResource("someTextFile.txt").getFile();
 
     // Nullary constructor for testing
     public WC(){}
@@ -23,14 +23,15 @@ public class WC {
         }
     }
 
-    public WC(Iterator<String> si) {
-        this.si = si;
-    }
+    // NOTED OUT BECAUSE STRING TESTS ARE FOR WEE BABIES
+//    public WC(Iterator<String> si) {
+//        this.si = si;
+//    }
 
     public void logic() {
+        file = si.next();
         HashMap<String, Integer> wordsAndAmounts = new HashMap<String, Integer>();
         String[] arrayOfWords = file.split(" ");
-        // Ths for loop makes all words lower case for better counting and removes periods from the ends of any words that have them
         for (int j = 0; j < arrayOfWords.length; j++) {
             String currentWord = arrayOfWords[j];
             currentWord.toLowerCase();
@@ -43,7 +44,15 @@ public class WC {
             }
         }
         // Print out all words next to how many times they appear
+        for (String  name: wordsAndAmounts.keySet()){
+            String value = wordsAndAmounts.get(name).toString();
+            System.out.println(name + " " + value);
+        }
+    }
 
+    public static void main(String[] args) {
+        WC wc = new WC(WC.class.getResource("/someTextFile.txt").getFile());
+        wc.logic();
     }
 
 }
