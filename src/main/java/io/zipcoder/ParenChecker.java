@@ -23,34 +23,54 @@ public class ParenChecker {
 
     public boolean allCheck(String check) {
 //        Pair input = new Pair('&', '&');
-
         for (int i = 0; i < check.length(); i++) {
             char current = check.charAt(i);
+            if (current == '(' || current == '{'
+                    || current == '[' || current == '<' || current == '"' || current == '\'') {
+                checker.push(current);
+            }
+            if ((current == ')' || current == '}' || current == ']' || current == '>') || current == '"' || current == '\'') {
+                if (checker.isEmpty()) {
+                    return false;
+                }
+                char last = checker.peek();
+                if (current == ')' && last == '(' || current == '}' && last == '{'
+                        || current == ']' && last == '[' || current == '>' && last == '<' || current == '"' && last == '"'
+                        || current == '\'' && last == '\'') {
+                    checker.pop();
+                }
+            }
+        }
+        return checker.isEmpty();
+    }
+
+//        for (int i = 0; i < check.length(); i++) {
+//            char current = check.charAt(i);
 //                if(check.charAt(i) == input.getOpen())
 //                    checker.push(check.charAt(i));
 //                char top = checker.peek();
 //                if(check.charAt(i) == input.getClose(top) && top == input.getOpen()) {
 //                    checker.pop();
 //            }
-
-
-
-            if ((current == ')' || current == '}' || current == ']' || current == '>') && checker.isEmpty()) {
-                return false;
-            }
-            if (current == '(' || current == '{' || current == '[' ||
-                    current == '<' || current == '\'' || current == '"') {
-                checker.push(current);
-            }
-            char top = checker.peek();
-            if (current == ')' && top == '(' || current == '}' && top == '{' ||
-                    current == ']' && top == '[' || current == '>' && top == '<' ||
-                    current == '\'' && top == '\'' || current == '"' && top == '"') {
-                checker.pop();
-            }
-      }
-        return checker.isEmpty();
-    }
+//
+//
+//
+//            if ((current == ')' || current == '}' || current == ']' || current == '>') && checker.isEmpty()) {
+//                return false;
+//            }
+//            if (current == '(' || current == '{' || current == '[' ||
+//                    current == '<' || current == '\'' || current == '"') {
+//                checker.push(current);
+//            }
+//            char top = checker.peek();
+//            if (current == ')' && top == '(' || current == '}' && top == '{' ||
+//                    current == ']' && top == '[' || current == '>' && top == '<' ||
+//                    current == '\'' && top == '\'' || current == '"' && top == '"') {
+//                checker.pop();
+//            }
+//      }
+//        return checker.isEmpty();
+//    }
 
 }
 
