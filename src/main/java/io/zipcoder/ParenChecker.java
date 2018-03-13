@@ -24,7 +24,7 @@ public class ParenChecker {
     public boolean pairChecker(String s){
         for(int i = 0; i < s.length(); i++){
             char c = s.charAt(i);
-            if(c == '(' || c == '{' || c == '[' || c == '<' || c == ' ' || c == '"') {
+            if(c == '(' || c == '{' || c == '[' || c == '<' || c == '\'' || c == '\"') {
                 stack.push(c);
             }else if(c == ')') {
                 if (stack.isEmpty() || stack.pop() != '(') return false;
