@@ -66,6 +66,12 @@ public class ParenCheckerTest {
     }
 
     @Test
+    public void checkCharacters7(){
+        parenChecker = new ParenChecker("({[<{>]})");
+        Assert.assertFalse(parenChecker.checkCharacters());
+    }
+
+    @Test
     public void checkCharactersQuotes(){
         parenChecker = new ParenChecker("'''");
         Assert.assertFalse(parenChecker.checkCharacters());

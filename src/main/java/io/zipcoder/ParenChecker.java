@@ -54,12 +54,13 @@ public class ParenChecker {
         for (String ch:tempArray){
             for (Enclosers encloser:enclosersList) {
                 if (ch.equals(encloser.getOpen())) enclosers.push(encloser);
-                else if (ch.equals(encloser.getClose())){
-                    try {
-                        if (ch.equals(enclosers.peek().getClose())) enclosers.pop();
-                    } catch (EmptyStackException exception) {
-                        return false;
-                    }
+            }
+            if (closerList.contains(ch)){
+                try {
+                    if (ch.equals(enclosers.peek().getClose())) enclosers.pop();
+                    else return false;
+                } catch (EmptyStackException exception) {
+                    return false;
                 }
             }
             if (ch.equals("'")){
