@@ -31,6 +31,7 @@ public class WC {
         String[] words;
         for(String fileLine = si.next(); true; fileLine = si.next()) {
             words = fileLine.split(" ");
+            words = stripUnwantedChars(words);
             placeWordIntoMap(words);
             if (!si.hasNext()){
                 break;
@@ -58,6 +59,13 @@ public class WC {
         for (Map.Entry entry: inputList) {
             System.out.println(entry);
         }
+    }
+
+    public String[] stripUnwantedChars(String[] inputArray){
+        for (int i = 0; i < inputArray.length; i++) {
+            inputArray[i]= inputArray[i].replaceAll("[^a-zA-Z']", "");
+        }
+        return inputArray;
     }
 
     public TreeMap<String, Integer> getWordMap() {
