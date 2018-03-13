@@ -1,14 +1,13 @@
 package io.zipcoder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public enum Enclosers {
     PAREN("(", ")"),
     CURLY("{", "}"),
     BRACKET("[", "]"),
     CAROT("<", ">"),
-    DQUOTE("\"", "\""),
-    SQUOTE("'", "'")
     ;
 
     private String open;
@@ -26,4 +25,5 @@ public enum Enclosers {
     public String getClose() {
         return close;
     }
+
 }

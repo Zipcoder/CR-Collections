@@ -50,6 +50,30 @@ public class ParenCheckerTest {
     @Test
     public void checkCharacters4(){
         parenChecker = new ParenChecker("wuiebfui(ew)b{al}hwbef)");
+        Assert.assertFalse(parenChecker.checkCharacters());
+    }
+
+    @Test
+    public void checkCharacters5(){
+        parenChecker = new ParenChecker("({[<>]})");
+        Assert.assertTrue(parenChecker.checkCharacters());
+    }
+
+    @Test
+    public void checkCharacters6(){
+        parenChecker = new ParenChecker("({[<]>]})");
+        Assert.assertFalse(parenChecker.checkCharacters());
+    }
+
+    @Test
+    public void checkCharactersQuotes(){
+        parenChecker = new ParenChecker("'''");
+        Assert.assertFalse(parenChecker.checkCharacters());
+    }
+
+    @Test
+    public void checkCharactersQuotes2(){
+        parenChecker = new ParenChecker("''");
         Assert.assertTrue(parenChecker.checkCharacters());
     }
 

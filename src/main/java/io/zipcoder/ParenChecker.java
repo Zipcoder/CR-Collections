@@ -7,11 +7,15 @@ public class ParenChecker {
     public String string;
     public Stack<String> parens;
     private Stack<Enclosers> enclosers;
+    private Stack<String> quotes;
+    private Stack<String> doublequotes;
 
     public ParenChecker(String entry){
         this.string = entry;
         this.parens = new Stack<String>();
         this.enclosers = new Stack<Enclosers>();
+        this.quotes = new Stack<String>();
+        this.doublequotes = new Stack<String>();
     }
 
     public boolean checkParen(){
@@ -41,21 +45,41 @@ public class ParenChecker {
     public boolean checkCharacters(){
         String[] tempArray = string.split("");
         ArrayList<Enclosers> enclosersList = new ArrayList<Enclosers>(Arrays.asList(Enclosers.values()));
+        ArrayList<String> openerList = new ArrayList<String>();
+        ArrayList<String> closerList = new ArrayList<String>();
+        for (Enclosers encloser:enclosersList) {
+            openerList.add(encloser.getOpen());
+            closerList.add(encloser.getClose());
+        }
         for (String ch:tempArray){
             for (Enclosers encloser:enclosersList) {
                 if (ch.equals(encloser.getOpen())) enclosers.push(encloser);
-            }
-            if (enclosers.size() > 0){
-                if (ch.equals(enclosers.peek().getClose())){
+                else if (ch.equals(encloser.getClose())){
                     try {
-                        enclosers.pop();
-                    } catch (EmptyStackException exception){
+                        if (ch.equals(enclosers.peek().getClose())) enclosers.pop();
+                    } catch (EmptyStackException exception) {
                         return false;
                     }
                 }
             }
+            if (ch.equals("'")){
+                if (quotes.size() == 1) {
+                    quotes.pop();
+                } else if (quotes.size() == 0){
+                    quotes.push(ch);
+                }
+            }
+            if (ch.equals("\'")){
+                if (doublequotes.size() == 1) {
+                    doublequotes.pop();
+                } else if (doublequotes.size() == 0){
+                    doublequotes.push(ch);
+                }
+            }
         }
         if (enclosers.size() > 0) return false;
+        if (quotes.size() > 0) return false;
+        if (doublequotes.size() > 0) return false;
         return true;
     }
 
