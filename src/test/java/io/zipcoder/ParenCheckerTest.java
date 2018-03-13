@@ -46,36 +46,51 @@ public class ParenCheckerTest {
     }
 
     @Test
-    public void verifyOpeningCharactersHaveAClosingOneTest(){
-
-    }
-    @Test
-    public void verifyOpeningCharactersHaveAClosingOneTest2(){
+    public void verifyParenthesesHaveOpenAndClosingOneTest(){
         //Given
         String test = "()";
         boolean expected = true;
         //When
-        boolean actual = parenCheckerTest.verifyParensArePaired(test);
+        boolean actual = parenCheckerTest.verifyOpeningCharactersHaveAClosingOne(test);
+        Assert.assertEquals(expected,actual);
+    }
+    @Test
+    public void verifyBracketsHaveOpenAndClosingOneTest(){
+        //Given
+        String test = "{}";
+        boolean expected = true;
+        //When
+        boolean actual = parenCheckerTest.verifyOpeningCharactersHaveAClosingOne(test);
         Assert.assertEquals(expected,actual);
     }
 
     @Test
-    public void verifyOpeningCharactersHaveAClosingOneTest3(){
+    public void verifyDiamondsHaveOpenAndClosingOneTest(){
         //Given
-        String test = "((";
-        boolean expected = false;
+        String test = "[]";
+        boolean expected = true;
         //When
-        boolean actual = parenCheckerTest.verifyParensArePaired(test);
+        boolean actual = parenCheckerTest.verifyOpeningCharactersHaveAClosingOne(test);
         Assert.assertEquals(expected,actual);
     }
 
     @Test
-    public void verifyOpeningCharactersHaveAClosingOneTest4(){
+    public void verifyDoubleQuotesHaveOpenAndClosingOneTest(){
         //Given
-        String test = ")(";
-        boolean expected = false;
+        String test = " \"Hi\" ";
+        boolean expected = true;
         //When
-        boolean actual = parenCheckerTest.verifyParensArePaired(test);
+        boolean actual = parenCheckerTest.verifyOpeningCharactersHaveAClosingOne(test);
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Test
+    public void verifySingleQuotesHaveOpenAndClosingOneTest(){
+        //Given
+        String test = " \'Merp\' ";
+        boolean expected = true;
+        //When
+        boolean actual = parenCheckerTest.verifyOpeningCharactersHaveAClosingOne(test);
         Assert.assertEquals(expected,actual);
     }
 }
