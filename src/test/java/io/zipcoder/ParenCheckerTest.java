@@ -3,8 +3,6 @@ package io.zipcoder;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Stack;
-
 public class ParenCheckerTest {
 
     @Test
@@ -33,6 +31,16 @@ public class ParenCheckerTest {
     public void testParenChecker5(){
         boolean actual = ParenChecker.parenChecker("eyioewncnv(((hgajdhak)adnkjf)euei)");
         Assert.assertTrue(actual);
+    }
+    @Test
+    public void testCheckMatchingCharacters1(){
+        boolean actual = ParenChecker.checkMatchingCharacters("{}<>");
+        Assert.assertTrue(actual);
+    }
+    @Test
+    public void testCheckMatchingCharacters2(){
+        boolean actual = ParenChecker.checkMatchingCharacters(">{}()<");
+        Assert.assertFalse(actual);
     }
 
 }
