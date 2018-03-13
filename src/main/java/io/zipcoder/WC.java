@@ -2,10 +2,7 @@ package io.zipcoder;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class WC {
     private Iterator<String> si;
@@ -31,7 +28,7 @@ public class WC {
     }
 
     public void readsStringFromfileAddstoMap() {
-        words = new HashMap<String, Integer>();
+        words = new TreeMap<String, Integer>();
         while (this.si.hasNext()) {
             String[] wordsArray = this.si.next().split("[^\\w]+");
             putsStringKeyInMap(wordsArray);
