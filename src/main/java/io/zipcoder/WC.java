@@ -12,7 +12,7 @@ import static java.util.stream.Collectors.toMap;
 public class WC{
     private Iterator<String> si;
     Map<String, Integer> reader = new LinkedHashMap<String, Integer>();
-    private ArrayList<Entry> sorted;
+
 
     public WC(String fileName) {
         try {
@@ -48,7 +48,7 @@ public class WC{
     public Map<String, Integer> sortInDescOrderByValue() {
         Map<String, Integer> sortByDesc = wordCollector().entrySet()
                 .stream()
-                .sorted(Map.Entry.<String, Integer> comparingByValue().reversed())
+                .sorted(Map.Entry.<String, Integer> comparingByValue().reversed().thenComparing(Map.Entry.comparingByKey()))
                 .collect(toMap(Map.Entry::getKey,
                         Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 
