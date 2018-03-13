@@ -10,35 +10,43 @@ public class ParenChecker {
 
     //going to pass in the chars we are looking for contained within a String ''
     public boolean parenChecker(String string) {
-        for(int i = 0; i < string.length(); i++) {
-            if(string.charAt(i) == ')' && parenStack.empty()){
-                break;
+        for (int i = 0; i < string.length(); i++) {
+            char charCurrent = string.charAt(i);
+            if (charCurrent == '(') {
+                parenStack.push(charCurrent);
             }
-            if (string.charAt(i) == '(') {
-                parenStack.push(string.charAt(i));
-            }
-            if(string.charAt(i) ==')'){
-                parenStack.pop();
+            if (charCurrent == ')') {   //if stack's empty, no existing pair for it to link to.
+                if (parenStack.isEmpty())
+                    return false;
+
+                char charOnStack = parenStack.peek();
+                if (charCurrent == ')' && charOnStack == '(') {
+                    parenStack.pop();
+                } else
+                    return false;
             }
         }
         return parenStack.empty();
     }
 
     public boolean pairOfParenthesies(String string) {
+        Stack<Character> parenStack = new Stack();
         for (int i =0; i < string.length(); i++) {
             char currentCharacter = string.charAt(i);
-            if (currentCharacter == '[' || currentCharacter == '"' || currentCharacter == '<' || currentCharacter == '\'' || currentCharacter == '{') {
+            if (currentCharacter == '[' || currentCharacter == '"' || currentCharacter == '<' || currentCharacter == '\'' || currentCharacter == '{' || currentCharacter == '(') {
                 parenStack.push(currentCharacter);
             }
-            if (currentCharacter == ']' || currentCharacter == '"' || currentCharacter == '>' || currentCharacter == '\'' || currentCharacter == '}' ) {
-                if (parenStack.isEmpty()) {
+            if (currentCharacter == ']' || currentCharacter == '"' || currentCharacter == '>' || currentCharacter == '\'' || currentCharacter == '}' || currentCharacter == ')' ) {
+
+                if (parenStack.isEmpty())
                     return false;
-                }
                 // look at the object at the top of the stack but don't remove, PEEK
                 char finalCharacter = parenStack.peek();
-                if (currentCharacter == ']' && finalCharacter == '[' || currentCharacter == '"' && finalCharacter == '"' || currentCharacter == '<' && finalCharacter =='>' || currentCharacter == '\'' && finalCharacter == '\'' || currentCharacter == '}' && finalCharacter == '{') {
+                if (currentCharacter == ']' && finalCharacter == '[' || currentCharacter == '"' && finalCharacter == '"'
+                        || currentCharacter == '>' && finalCharacter =='<' || currentCharacter == '\'' && finalCharacter == '\'' || currentCharacter == '}' && finalCharacter == '{' || currentCharacter == ')' && finalCharacter == '(') {
                     parenStack.pop();
-                }
+                } else
+                    return false;
             }
         }
         return parenStack.isEmpty();
