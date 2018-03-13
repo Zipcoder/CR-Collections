@@ -28,11 +28,12 @@ public class WC {
     }
 
     public void readsStringFromfileAddstoMap() {
-        words = new TreeMap<String, Integer>();
+        words = new TreeMap<String, Integer>(Collections.<String>reverseOrder());
         while (this.si.hasNext()) {
             String[] wordsArray = this.si.next().split("[^\\w]+");
             putsStringKeyInMap(wordsArray);
         }
+
     }
 
     public void putsStringKeyInMap(String[] theWords) {
@@ -56,8 +57,14 @@ public class WC {
         return words.get(theWord);
     }
 
+//    public void reverseOrderOfMap(){
+//        Map<String, Integer> newMap = new TreeMap(Collections.reverseOrder());
+//        newMap.putAll(words);
+//    }
+
 
     public void print() {
+          // need to print in decending order.
         for (Map.Entry<String, Integer> entry : words.entrySet())
             System.out.println(entry.getValue() + " : " + entry.getKey());
     }
