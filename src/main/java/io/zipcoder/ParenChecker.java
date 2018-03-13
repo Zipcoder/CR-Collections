@@ -6,40 +6,43 @@ public class ParenChecker {
 
     private Stack charStack;
 
-    public ParenChecker(Stack charStack) {
+    ParenChecker(Stack charStack) {
         this.charStack = charStack;
     }
 
     public boolean logicChecker() {
-        if ((logic('(', ')')) &&
+        return (logic('(', ')')) &&
                 logic('{', '}') &&
                 logic('[', ']') &&
                 logic('<', '>') &&
-                logic('"', '"') &&
-                logic('\'', '\'')) {
-            return true;
-        }
-        return false;
+                quoteCounter('\"') &&
+                quoteCounter('\'');
     }
 
-    public boolean logic(char firstChar, char secondChar) {
+    private boolean logic(char firstChar, char secondChar) {
         int parenCount = 0;
-        for (int i = 0; i < charStack.size(); i++) {
+        for (Object aCharStack : charStack) {
             if (parenCount < 0) {
                 return false;
             }
-            if (charStack.get(i).equals(firstChar)) {
+            if (aCharStack.equals(firstChar)) {
                 parenCount++;
             }
-            if (charStack.get(i).equals(secondChar)) {
+            if (aCharStack.equals(secondChar)) {
                 parenCount--;
             }
         }
-        if (parenCount != 0) {
-            return false;
-        } else {
-            return true;
+        return parenCount == 0;
+    }
+
+    public boolean quoteCounter(char quote) {
+        int quoteCount = 0;
+        for (Object aCharStack : charStack) {
+            if (aCharStack.equals(quote)) {
+                quoteCount++;
+            }
         }
+        return quoteCount % 2 == 0;
     }
 
 }
