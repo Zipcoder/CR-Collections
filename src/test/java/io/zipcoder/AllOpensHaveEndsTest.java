@@ -41,12 +41,32 @@ public class AllOpensHaveEndsTest {
 
     @Test
     public void verifyAllOpensHaveEndsFalse1Test() {
-        String testString = "((";
+        String testString = "((/////////////////////////////)";
         boolean expect = false;
         boolean actual = theCheck.verifyAllOpensHaveEnds(testString);
 
         Assert.assertEquals(expect, actual);
     }
+
+
+
+    @Test
+    public void verifyAllOpensHaveEndsFalse2Test() {
+        String testString = "((/////////////////////////////)}}}}}}}}}}}}}}}}}}}}}}}}{{{{{{{{{{{{{{{}}}";
+        boolean expect = false;
+        boolean actual = theCheck.verifyAllOpensHaveEnds(testString);
+
+        Assert.assertEquals(expect, actual);
+    }
+    @Test
+    public void verifyAllOpensHaveEnds2Test() {
+        String testString = "sfsdfkjdsljfl";
+        boolean expect = true;
+        boolean actual = theCheck.verifyAllOpensHaveEnds(testString);
+
+        Assert.assertEquals(expect, actual);
+    }
+
 
 
 

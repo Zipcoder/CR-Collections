@@ -40,14 +40,20 @@ public class ParenChecker {
         bracketPairs.put('[', ']');
         bracketPairs.put('<', '>');
         bracketPairs.put('"', '"');
-        // theMap.put(' ' ',' '');
+        bracketPairs.put('\'', '\'');
 
         for (int i = 0; i < theString.length(); i++) {
             char theChar = theString.charAt(i);
             if (bracketPairs.containsKey(theChar)) {
                 theStack.push(theChar);
-            } else if (theStack.isEmpty() || bracketPairs.get(theStack.pop()) != theChar) return false;
+            }
 
+            //how to account all things in between the open brackets.
+            //theStackisempty;
+
+            else if (bracketPairs.get(theStack.peek()) == theChar){
+                theStack.pop();
+            }
         }
         return theStack.isEmpty();
     }
