@@ -24,6 +24,9 @@ public class WC {
         hash = new LinkedHashMap<>();
     }
 
+    public Integer getCountForKey(String key) {
+        return hash.get(key);
+    }
 
     public void generate() {
         while (si.hasNext()) {
