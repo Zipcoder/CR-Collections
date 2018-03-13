@@ -2,8 +2,7 @@ package io.zipcoder;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.Iterator;
-import java.util.Scanner;
+import java.util.*;
 
 public class WC {
     private Iterator<String> si;
@@ -19,5 +18,12 @@ public class WC {
 
     public WC(Iterator<String> si) {
         this.si = si;
+    }
+
+    public String wordCount(){
+        while (si.hasNext()){
+            System.out.println(si.next().replaceAll("[^a-zA-Z`]", ""));
+        }
+        return null;
     }
 }

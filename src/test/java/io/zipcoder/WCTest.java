@@ -17,18 +17,12 @@ public class WCTest {
 
     @Before
     public void setup(){
-        wc = new WC("/Users/patrickglavin/Dev/third_hex/EncapsulativeCharacters/src/main/resources/someTextFile.txt");
-        wc = new WC("/../../../resources/someTextFile.txt");
+        wc = new WC(WC.class.getResource("/someTextFile.txt").getFile());
     }
 
     @Test
-    public void constructorTest(){
-
+    public void duckDuckGooseTest(){
+        wc.wordCount();
     }
 
-    // /Users/patrickglavin/Dev/third_hex/EncapsulativeCharacters/src/main/java/io/zipcoder/WC.java
-
-
-    // /Users/patrickglavin/Dev/third_hex/EncapsulativeCharacters/src/main/java/io/zipcoder/WC.java
-    // /Users/patrickglavin/Dev/third_hex/EncapsulativeCharacters/src/main/resources/someTextFile.txt
 }
