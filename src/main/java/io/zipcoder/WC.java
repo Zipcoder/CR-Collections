@@ -36,9 +36,6 @@ public class WC {
         for (String s : words) {
             Integer freq = wordMap.get(s);
             wordMap.put(s, (freq == null) ? 1 : freq + 1);
-//            if(freq == null){
-//                wordMap.put(s, 1);
-//            }else wordMap.put(s, freq+1);
         }
         return wordMap;
     }
