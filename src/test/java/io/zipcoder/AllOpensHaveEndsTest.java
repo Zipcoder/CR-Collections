@@ -58,6 +58,24 @@ public class AllOpensHaveEndsTest {
 
         Assert.assertEquals(expect, actual);
     }
+
+    @Test
+    public void verifyAllOpensHaveEndsTrueTest() {
+        String testString = "((/////////////////////////////))<>";
+        boolean expect = true;
+        boolean actual = theCheck.verifyAllOpensHaveEnds(testString);
+
+        Assert.assertEquals(expect, actual);
+    }
+
+    @Test
+    public void verifyAllOpensHaveEndsfalseTest() {
+        String testString = "((/////////////////////////////))<";
+        boolean expect = false;
+        boolean actual = theCheck.verifyAllOpensHaveEnds(testString);
+
+        Assert.assertEquals(expect, actual);
+    }
     @Test
     public void verifyAllOpensHaveEnds2Test() {
         String testString = "sfsdfkjdsljfl";
