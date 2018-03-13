@@ -33,7 +33,7 @@ public class ParenCheckerTest {
     public void testForEachOpeningAClosingTrue() {
         // Given
         ParenChecker parenTest = new ParenChecker();
-        String string2 = "I have 'no' <insert quote here> never spotted a [dougie]";
+        String string2 = "I have 'no' <insert quote here> never spotted a [dougie] so fresh \"To death\" that even a map.";
 
         Assert.assertTrue(parenTest.forEachOpeningAClosing(string2));
     }
@@ -42,7 +42,7 @@ public class ParenCheckerTest {
     public void testForEachOpeningAClosingFalse() {
         // Given
         ParenChecker parenTest = new ParenChecker();
-        String string2 = "I <pop>  ('ksd that'll do";
+        String string2 = "I <pop>  ('ksd that'll do) ,<<";
         Assert.assertFalse(parenTest.forEachOpeningAClosing(string2));
     }
 

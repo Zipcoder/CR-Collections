@@ -42,7 +42,7 @@ public class WC {
     public Map<String, Integer> sortWordCollector() {
         Map<String, Integer> sortByDes = wordCollector().entrySet()
                 .stream()
-                .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
+                .sorted(Map.Entry.<String, Integer>comparingByValue().reversed().thenComparing(Map.Entry.comparingByKey()))
                 .collect(toMap(Map.Entry::getKey,
                         Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
         return sortByDes;
