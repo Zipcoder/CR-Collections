@@ -20,10 +20,21 @@ public class WC {
         this.si = si;
     }
 
-    public String wordCount(){
-        while (si.hasNext()){
-            System.out.println(si.next().replaceAll("[^a-zA-Z`]", ""));
+    public ArrayList<String> removePunctuation() {
+        ArrayList<String> answer = new ArrayList<>();
+        while (si.hasNext()) {
+            answer.add(si.next().toLowerCase().replaceAll("[^a-zA-Z`]", ""));
         }
-        return null;
+        return answer;
+    }
+
+    public HashMap<String, Integer> wordCount(){
+        ArrayList<String> filtered = removePunctuation();
+        HashMap<String, Integer> answer = new HashMap<>();
+        for (String word:filtered) {
+            if (!answer.containsKey(word)) answer.put(word, 1);
+            else answer.put(word, answer.get(word) + 1);
+        }
+        return answer;
     }
 }
