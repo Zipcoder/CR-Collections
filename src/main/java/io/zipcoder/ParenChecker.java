@@ -35,71 +35,95 @@ public class ParenChecker {
                 stackOfChars.push(inputChar);
                 break;
             case ')':
-                if (!stackOfChars.empty()) {
-                    if (stackOfChars.peek().equals('(')) {
-                        stackOfChars.pop();
-                    } else {
-                        stackOfChars.push(inputChar);
-                    }
-                } else {
-                    stackOfChars.push(inputChar);
-                }
+                checkClosingParen(inputChar);
                 break;
             case '}':
-                if (!stackOfChars.empty()) {
-                    if (stackOfChars.peek().equals('{')) {
-                        stackOfChars.pop();
-                    } else {
-                        stackOfChars.push(inputChar);
-                    }
-                } else {
-                    stackOfChars.push(inputChar);
-                }
+                checkClosingBracket(inputChar);
                 break;
             case ']':
-                if (!stackOfChars.empty()) {
-                    if (stackOfChars.peek().equals('[')) {
-                        stackOfChars.pop();
-                    } else {
-                        stackOfChars.push(inputChar);
-                    }
-                } else {
-                    stackOfChars.push(inputChar);
-                }
+                checkClosingSquareBracket(inputChar);
                 break;
             case '>':
-                if (!stackOfChars.empty()) {
-                    if (stackOfChars.peek().equals('<')) {
-                        stackOfChars.pop();
-                    } else {
-                        stackOfChars.push(inputChar);
-                    }
-                } else {
-                    stackOfChars.push(inputChar);
-                }
+                checkClosingAngleBracket(inputChar);
                 break;
             case '\"':
-                if (!stackOfChars.empty()) {
-                    if (stackOfChars.peek().equals('\"')) {
-                        stackOfChars.pop();
-                    } else {
-                        stackOfChars.push(inputChar);
-                    }
-                } else {
-                    stackOfChars.push(inputChar);
-                }
+                checkDoubleQuotes(inputChar);
                 break;
             case '\'':
-                if (!stackOfChars.empty()) {
-                    if (stackOfChars.peek().equals('\'')) {
-                        stackOfChars.pop();
-                    } else {
-                        stackOfChars.push(inputChar);
-                    }
-                } else {
-                    stackOfChars.push(inputChar);
-                }
+                checkSingleQuotes(inputChar);
                 break;
+        }
+    }
+
+    private void checkSingleQuotes(char inputChar) {
+        if (!stackOfChars.empty()) {
+            if (stackOfChars.peek().equals('\'')) {
+                stackOfChars.pop();
+            } else {
+                stackOfChars.push(inputChar);
+            }
+        } else {
+            stackOfChars.push(inputChar);
+        }
+    }
+
+    private void checkDoubleQuotes(char inputChar) {
+        if (!stackOfChars.empty()) {
+            if (stackOfChars.peek().equals('\"')) {
+                stackOfChars.pop();
+            } else {
+                stackOfChars.push(inputChar);
+            }
+        } else {
+            stackOfChars.push(inputChar);
+        }
+    }
+
+    private void checkClosingAngleBracket(char inputChar) {
+        if (!stackOfChars.empty()) {
+            if (stackOfChars.peek().equals('<')) {
+                stackOfChars.pop();
+            } else {
+                stackOfChars.push(inputChar);
+            }
+        } else {
+            stackOfChars.push(inputChar);
+        }
+    }
+
+    private void checkClosingSquareBracket(char inputChar) {
+        if (!stackOfChars.empty()) {
+            if (stackOfChars.peek().equals('[')) {
+                stackOfChars.pop();
+            } else {
+                stackOfChars.push(inputChar);
+            }
+        } else {
+            stackOfChars.push(inputChar);
+        }
+    }
+
+    private void checkClosingBracket(char inputChar) {
+        if (!stackOfChars.empty()) {
+            if (stackOfChars.peek().equals('{')) {
+                stackOfChars.pop();
+            } else {
+                stackOfChars.push(inputChar);
+            }
+        } else {
+            stackOfChars.push(inputChar);
+        }
+    }
+
+    private void checkClosingParen(char inputChar) {
+        if (!stackOfChars.empty()) {
+            if (stackOfChars.peek().equals('(')) {
+                stackOfChars.pop();
+            } else {
+                stackOfChars.push(inputChar);
+            }
+        } else {
+            stackOfChars.push(inputChar);
         }
     }
 }

@@ -8,6 +8,7 @@ public class WC {
     private Iterator<String> si;
     private TreeMap<String, Integer> wordMap = new TreeMap();
 
+
     public WC(String fileName) {
         try {
             this.si = new Scanner(new FileReader(fileName));
@@ -22,30 +23,44 @@ public class WC {
     }
 
     public void wordCounter(){
+        splitIntoSingleWords();
+        sortMap();
+    }
+
+    private void splitIntoSingleWords() {
         String[] words;
         for(String fileLine = si.next(); true; fileLine = si.next()) {
             words = fileLine.split(" ");
-            for (String word: words) {
-                if (!wordMap.containsKey(word.toLowerCase())){
-                    wordMap.put(word.toLowerCase(), 1);
-                } else {
-                    wordMap.put(word.toLowerCase(), wordMap.get(word)+ 1);
-                }
-            }
+            placeWordIntoMap(words);
             if (!si.hasNext()){
                 break;
             }
         }
-        printAllResults();
+    }
+
+    private void placeWordIntoMap(String[] words) {
+        for (String word: words) {
+            if (!wordMap.containsKey(word.toLowerCase())){
+                wordMap.put(word.toLowerCase(), 1);
+            } else {
+                wordMap.put(word.toLowerCase(), wordMap.get(word)+ 1);
+            }
+        }
+    }
+
+    private void sortMap(){
+        ArrayList<Map.Entry<String, Integer>> listOfEntries = new ArrayList<Map.Entry<String, Integer>>(wordMap.entrySet());
+        listOfEntries.sort((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()));
+        printAllResults(listOfEntries);
+    }
+
+    private void printAllResults(ArrayList<Map.Entry<String, Integer>> inputList){
+        for (Map.Entry entry: inputList) {
+            System.out.println(entry);
+        }
     }
 
     public TreeMap<String, Integer> getWordMap() {
         return wordMap;
-    }
-
-    public void printAllResults(){
-        for (String key: wordMap.keySet()) {
-            System.out.println(key + " " + wordMap.get(key));
-        }
     }
 }
