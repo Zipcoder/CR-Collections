@@ -14,6 +14,19 @@ public class ParenCheckerTest {
         String value = "I rock (rough) and stuff with my (afro) puffs!";
         //When
         boolean pairParen = parenChecker.parenChecker(value);
-        Assert.assertFalse(pairParen);
+        Assert.assertTrue(pairParen);
     }
+
+    @Test
+    public void testIsMatchChecker(){
+        //Given
+        ParenChecker parenChecker = new ParenChecker();
+        String value = "{(/)}<";
+        //When
+        boolean pairParen = parenChecker.parenChecker(value);
+        Assert.assertTrue(pairParen);
+
+    }
+
+    @
 }

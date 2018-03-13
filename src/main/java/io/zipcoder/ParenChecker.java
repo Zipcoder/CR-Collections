@@ -36,14 +36,15 @@ public class ParenChecker {
             //question about last two comparisons
             if(c == '(' || c == '[' || c== '<'|| c == '{'){
                 stack.push(c);
-            }else if(c==')'){
-                return false;
             }else if(c==')' || c==']' || c== '>' || c == '}'){
-
+                if(stack.isEmpty()){
+                    return false;
+                }
+                stack.pop();
             }
 
-
         }
+        return stack.isEmpty();
     }
 
 
