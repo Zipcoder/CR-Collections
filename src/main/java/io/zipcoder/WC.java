@@ -37,6 +37,9 @@ public class WC {
         return wordsAndCount;
     }
 
+
+
+
     public LinkedHashMap sortedByValueDescending(TreeMap<String, Integer> input) {
         {
             List<Map.Entry<String, Integer>> sortedByValue = new LinkedList<>(input.entrySet());
@@ -50,9 +53,17 @@ public class WC {
 
             return result;
         }
-
     }
-    
+
+    public String toDisplay(LinkedHashMap<String, Integer> input){
+        StringBuilder diplayString = new StringBuilder();
+
+        for(String key : input.keySet()){
+            diplayString.append("\t"+input.get(key) + " : " + key+"\n");
+        }
+
+        return diplayString.toString();
+    }
 }
 
 
