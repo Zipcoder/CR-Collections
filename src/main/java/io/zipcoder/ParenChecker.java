@@ -45,11 +45,13 @@ public class ParenChecker {
             for (Enclosers encloser:enclosersList) {
                 if (ch.equals(encloser.getOpen())) enclosers.push(encloser);
             }
-            if (enclosers.size() > 0 || ch.equals(enclosers.peek().getClose())){
-                try {
-                    enclosers.pop();
-                } catch (EmptyStackException exception){
-                    return false;
+            if (enclosers.size() > 0){
+                if (ch.equals(enclosers.peek().getClose())){
+                    try {
+                        enclosers.pop();
+                    } catch (EmptyStackException exception){
+                        return false;
+                    }
                 }
             }
         }
