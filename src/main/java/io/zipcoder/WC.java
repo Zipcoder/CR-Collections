@@ -26,7 +26,20 @@ public class WC {
     public LinkedHashMap<String, Integer> storeWordsWithCount() {
         wordCounter = new LinkedHashMap<>();
         while(si.hasNext()) {
-            String word = si.next().replace(".", "").replace(",", "").toLowerCase();
+            String word = si.next().replace(".", "")
+                    .replace(",", "")
+                    .replace("-", "")
+                    .replace("/", "")
+                    .replace(";", "")
+                    .replace(":", "")
+                    .replace("\'", "")
+                    .replace("\"", "")
+                    .replace("?", "")
+                    .replace("!", "")
+                    .replace("`", "")
+                    .replace("(", "")
+                    .replace(")", "")
+                    .toLowerCase();
             if(!wordCounter.containsKey(word)) {
                 wordCounter.put(word, 1);
                 } else {
