@@ -42,7 +42,7 @@ public class ParenCheckerTest {
     @Test
     public void closeNoOpenTest2(){
         //Given
-        String test = ")aBcD()eFgHiJkLmN()";
+        String test = ")aBcD()eFgHiJkLmN()(";
 
         //When
 

@@ -13,6 +13,7 @@ public class WCTest {
     @Before
     public void setUp(){
         testOutput = new LinkedHashMap<>();
+        testOutput.put("TOTAL WORDS",11);
         testOutput.put("birb",3);
         testOutput.put("stinky",2);
         testOutput.put("henlo",1);
@@ -21,6 +22,7 @@ public class WCTest {
         testOutput.put("some",1);
         testOutput.put("bird",1);
         testOutput.put("seed",1);
+
     }
 
     @Test
@@ -30,7 +32,7 @@ public class WCTest {
 
         //When
         ArrayList <Map.Entry<String,Integer>> expected = new ArrayList<>(testOutput.entrySet());
-        ArrayList <Map.Entry<String,Integer>> actual = testCounter.countWords();
+        LinkedList <Map.Entry<String,Integer>> actual = testCounter.countWords();
 
         //Then
         System.out.println(actual);

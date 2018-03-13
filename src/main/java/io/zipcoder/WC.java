@@ -22,23 +22,25 @@ public class WC {
     }
 
 
-    public ArrayList <Map.Entry<String,Integer>> countWords(){
+    public LinkedList <Map.Entry<String,Integer>> countWords(){
         LinkedHashMap<String,Integer> outputMap = new LinkedHashMap<>();
+        int totalWords =0;
 
         while(si.hasNext()){
-            String word = si.next().toLowerCase().replaceAll("[^a-zA-Z]", "");
-            if(outputMap.containsKey(word.toLowerCase())){
+            totalWords++;
+            String word = si.next().toLowerCase().replaceAll("[^a-z]","");
+            if(outputMap.containsKey(word)){
                 int newNumber = outputMap.get(word)+1;
-                outputMap.put(word.toLowerCase(), newNumber);
+                outputMap.put(word, newNumber);
             }
             else{
-                outputMap.put(word.toLowerCase(),1);
+                outputMap.put(word,1);
             }
         }
+        outputMap.put("TOTAL WORDS", totalWords);
 
-        ArrayList <Map.Entry<String,Integer>> outputList = new ArrayList<>(outputMap.entrySet());
+        LinkedList <Map.Entry<String,Integer>> outputList = new LinkedList<>(outputMap.entrySet());
         outputList.sort((o1,o2) -> o2.getValue().compareTo(o1.getValue()));
-
 
         return outputList;
     }
