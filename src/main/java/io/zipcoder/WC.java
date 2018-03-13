@@ -45,10 +45,9 @@ public class WC {
 
 
     public Map<String, Integer> uniqueWordCount() {
-        int count = 0;
 
         while (si.hasNext()) {
-            count++;
+
             String word = si.next().toLowerCase().replaceAll("[^a-z]", "" );
 
                 if (listOfWords.containsKey(word)) {
@@ -56,7 +55,7 @@ public class WC {
                 } else {
                     listOfWords.put(word, 1);
                 }
-        } listOfWords.put("Count For Entire File", count);
+        }
         return listOfWords;
     }
 
@@ -70,12 +69,23 @@ public class WC {
         return sorted;
     }
 
+    public Map<String, Integer> getMap(){
+        return this.listOfWords;
+    }
+
     public String printMap(){
+        int count = 0;
         StringBuilder sb = new StringBuilder();
+
         for (Map.Entry<String, Integer> words: returnValueDesc().entrySet()) {
             sb.append("Word: " + words.getKey() + "\n" + "Appears: " + words.getValue() + " times \n" + "_____________\n");
+            count += getMap().get(words.getKey());
         }
-        System.out.println(sb.toString());
-        return sb.toString();
+        StringBuilder sb1 = new StringBuilder();
+
+        sb1.append("\nTotal Word Count : " + count + "\n\n" + "~~~~~~~~~~~~~\n\n");
+        sb1.append(sb);
+        System.out.println(sb1.toString());
+        return sb1.toString();
     }
 }

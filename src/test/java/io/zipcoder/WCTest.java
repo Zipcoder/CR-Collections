@@ -34,18 +34,18 @@ public class WCTest {
 //        Assert.assertEquals(expected, actual);
 //    }
 
-    @Test
-    public void wcHelloTest() {
-        //Given
-        WC wordCountTest = new WC("/Users/karoushafennimore/Dev/EncapsulativeCharacters/src/main/resources/hello.txt");
-
-        //When
-        int expected = 8;
-        int actual = wordCountTest.wordCount();
-
-        //Then
-        Assert.assertEquals(expected, actual);
-    }
+//    @Test
+//    public void wcHelloTest() {
+//        //Given
+//        WC wordCountTest = new WC("/Users/karoushafennimore/Dev/EncapsulativeCharacters/src/main/resources/hello.txt");
+//
+//        //When
+//        int expected = 8;
+//        int actual = wordCountTest.wordCount();
+//
+//        //Then
+//        Assert.assertEquals(expected, actual);
+//    }
 
     @Test
     public void uniqueWordTest() {
