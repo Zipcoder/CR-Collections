@@ -18,6 +18,7 @@ public class WC {
     }
 
     public WC(Iterator<String> si) {
+
         this.si = si;
     }
 }
