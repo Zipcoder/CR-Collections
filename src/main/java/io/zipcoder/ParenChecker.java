@@ -32,12 +32,14 @@ public class ParenChecker{
         openClosingPairs.put('\'', '\'');
 
         for(int i = 0; i < input.length(); i++){
-            char inputCharacter = input.charAt(i);
+            Character inputCharacter = input.charAt(i);
 
             if(openClosingPairs.containsKey(inputCharacter)){
                 parensStack.push(inputCharacter);
-            } else if (parensStack.isEmpty() || parensStack.peek() != openClosingPairs.get(inputCharacter)){
+            } else if (openClosingPairs.containsValue(parensStack.peek()) && parensStack.isEmpty()){
                 return false;
+            }else if (inputCharacter == openClosingPairs.get(parensStack.peek())){
+                parensStack.pop();
             }
         }
         return parensStack.isEmpty();

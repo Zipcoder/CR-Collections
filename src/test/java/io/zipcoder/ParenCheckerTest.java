@@ -75,9 +75,19 @@ public class ParenCheckerTest {
     }
 
     @Test
+    public void verifyDiamondsHaveOpenAndClosingOneTestFail(){
+        //Given
+        String test = "[";
+        boolean expected = false;
+        //When
+        boolean actual = parenCheckerTest.verifyOpeningCharactersHaveAClosingOne(test);
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Test
     public void verifyDoubleQuotesHaveOpenAndClosingOneTest(){
         //Given
-        String test = " \"Hi\" ";
+        String test = "\"Hi\"";
         boolean expected = true;
         //When
         boolean actual = parenCheckerTest.verifyOpeningCharactersHaveAClosingOne(test);
@@ -87,7 +97,7 @@ public class ParenCheckerTest {
     @Test
     public void verifySingleQuotesHaveOpenAndClosingOneTest(){
         //Given
-        String test = " \'Merp\' ";
+        String test = "'Merp'";
         boolean expected = true;
         //When
         boolean actual = parenCheckerTest.verifyOpeningCharactersHaveAClosingOne(test);
