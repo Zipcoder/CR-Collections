@@ -26,7 +26,7 @@ public class WC {
         LinkedHashMap<String,Integer> outputMap = new LinkedHashMap<>();
 
         while(si.hasNext()){
-            String word = si.next().toLowerCase().replaceAll("\\.", "");
+            String word = si.next().toLowerCase().replaceAll("[^a-zA-Z]", "");
             if(outputMap.containsKey(word.toLowerCase())){
                 int newNumber = outputMap.get(word)+1;
                 outputMap.put(word.toLowerCase(), newNumber);
