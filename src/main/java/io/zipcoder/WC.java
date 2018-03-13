@@ -76,7 +76,7 @@ public class WC {
         StringBuilder breakdown = new StringBuilder();
 
         for (Map.Entry<String, Integer> key : sortMap()) {
-            breakdown.append(String.format("%3s", key.getValue()));
+            breakdown.append(String.format("%4s", key.getValue()));
             breakdown.append(" | " + key.getKey() + "\n");
             count += key.getValue();
         }
