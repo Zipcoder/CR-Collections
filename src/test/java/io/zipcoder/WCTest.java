@@ -51,4 +51,10 @@ public class WCTest {
         Assert.assertEquals(expected, wc.wordCount());
     }
 
+    @Test
+    public void frankensteinTest(){
+        wc = new WC(WC.class.getResource("/frankenstein.txt").getFile());
+        System.out.println(wc.wordCount());
+    }
+
 }

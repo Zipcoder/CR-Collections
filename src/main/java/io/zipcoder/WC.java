@@ -29,15 +29,19 @@ public class WC {
         return answer;
     }
 
-    public HashMap<String, Integer> wordCount(){
+    public Map<String, Integer> wordCount(){
         ArrayList<String> filtered = removePunctuation();
-        HashMap<String, Integer> answer = new HashMap<>();
+        Map<String, Integer> answer = new LinkedHashMap<>();
         for (String word:filtered) {
             if (!answer.containsKey(word)) answer.put(word, 1);
             else answer.put(word, answer.get(word) + 1);
         }
-        answer.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-                .collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, HashMap::new));
-        return answer;
+        Map<String, Integer> sorted = answer.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+        for (Map.Entry entry:sorted.entrySet()) {
+            System.out.println(entry.getKey() + " | " + entry.getValue());
+        }
+        return sorted;
     }
+
 }
