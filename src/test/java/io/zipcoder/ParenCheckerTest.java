@@ -48,8 +48,8 @@ public class ParenCheckerTest {
     @Test
     public void testOthers(){
         ParenChecker testChecker = new ParenChecker();
-        String parens = "dasdads\"dasdasdad\"";
-        boolean expected = true;
+        String parens = "das\"dad\"sda\'sda\"\"sdad";
+        boolean expected = false;
         boolean actual = testChecker.parenChecker(parens);
         Assert.assertEquals(expected, actual);
     }

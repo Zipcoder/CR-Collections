@@ -55,12 +55,12 @@ public class WC {
         return sortedMap;
     }
     public String toString(){
-        StringBuilder usedForTest = new StringBuilder();
-        sorted().forEach((Map.Entry<String, Integer> e) ->
-            usedForTest.append(e.getKey() + " : " + e.getValue() + "\n"));
-            return usedForTest.toString();
+       StringBuilder usedForTest = new StringBuilder();
+        for (Map.Entry<String, Integer> entry : sorted()){
+            usedForTest.append(entry.getKey() + " : " + entry.getValue() + "\n");
+        }
+        return usedForTest.toString();
     }
-    public void print(){
-        System.out.println(toString());
-    }
+
+
 }
