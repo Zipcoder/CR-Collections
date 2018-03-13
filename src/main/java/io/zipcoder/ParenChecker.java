@@ -7,7 +7,7 @@ public class ParenChecker {
 
     public static boolean CheckParentesis(String str) {
         if (str.isEmpty())
-            return true;
+            return false;
 
         Stack<Character> stack = new Stack<Character>();
         for (int i = 0; i < str.length(); i++) {
@@ -15,8 +15,6 @@ public class ParenChecker {
             if (current == '(') {
                 stack.push(current);
             }
-
-
             if (current == ')') {
                 if (stack.isEmpty())
                     return false;
@@ -27,9 +25,7 @@ public class ParenChecker {
                 else
                     return false;
             }
-
         }
-
         return stack.isEmpty();
     }
 

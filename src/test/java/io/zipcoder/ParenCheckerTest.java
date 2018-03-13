@@ -131,7 +131,28 @@ public class ParenCheckerTest {
         Assert.assertFalse(actual);
     }
 
+    @Test
+    public void openingAndClosing6() {
+        // Given
+        String openingAndClosingString = "{hello'";
 
+        //When
+        Boolean actual = openingAndClosing(openingAndClosingString);
 
+        // Then
+        Assert.assertFalse(actual);
+    }
+
+    @Test
+    public void openingAndClosing7() {
+        // Given
+        String openingAndClosingString = "{hello} [world]";
+
+        //When
+        Boolean actual = openingAndClosing(openingAndClosingString);
+
+        // Then
+        Assert.assertTrue(actual);
+    }
 
 }
