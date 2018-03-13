@@ -1,22 +1,24 @@
 package io.zipcoder;
 
-import java.util.Stack;
+import java.text.StringCharacterIterator;
+import java.util.*;
 
 public class ParenChecker {
     public String string;
     public Stack<String> parens;
+    private Stack<Enclosers> enclosers;
 
     public ParenChecker(String entry){
         this.string = entry;
         this.parens = new Stack<String>();
+        this.enclosers = new Stack<Enclosers>();
     }
 
     public boolean checkParen(){
-        for (String letter:string.split("")) {
-            if (letter.equals("(")){
-                parens.push(letter);
-            }
-            if (letter.equals(")")){
+        String[] tempArray = string.split("");
+        for (String ch:tempArray){
+            if (ch.equals("(")) parens.push(ch);
+            if (ch.equals(")")){
                 try {
                     parens.pop();
                 } catch (Exception exception){
@@ -36,23 +38,23 @@ public class ParenChecker {
      * fallout return true
      */
 
-//    public boolean checkCharacters(){
-//        for (String letter:string.split("")) {
-//            if (letter.equals("(") || letter.equals("{") || letter.equals("[") || letter.equals("<")){
-//                openParen.push(letter);
-//            }
-//            if (letter.equals("{")) openBracket.push(letter);
-//            if (letter.equals(")") || letter.equals("}") || letter.equals("]") || letter.equals(">")){
-//                closeParen.push(letter);
-//                if (openParen.size()<closeParen.size()) return false;
-//            }
-//            if (letter.equals("\"") || letter.equals("'")){
-//                quotes.push(letter);
-//            }
-//        }
-//        if (openParen.size() != closeParen.size()) return false;
-//        if (quotes.size() % 2 == 1) return false;
-//        return true;
-//    }
+    public boolean checkCharacters(){
+        String[] tempArray = string.split("");
+        ArrayList<Enclosers> enclosersList = new ArrayList<Enclosers>(Arrays.asList(Enclosers.values()));
+        for (String ch:tempArray){
+            for (Enclosers encloser:enclosersList) {
+                if (ch.equals(encloser.getOpen())) enclosers.push(encloser);
+            }
+            if (enclosers.size() > 0 || ch.equals(enclosers.peek().getClose())){
+                try {
+                    enclosers.pop();
+                } catch (EmptyStackException exception){
+                    return false;
+                }
+            }
+        }
+        if (enclosers.size() > 0) return false;
+        return true;
+    }
 
 }

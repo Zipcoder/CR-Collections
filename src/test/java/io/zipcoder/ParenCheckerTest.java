@@ -30,9 +30,27 @@ public class ParenCheckerTest {
     }
 
     @Test
-    public void checkParenTest4(){
+    public void checkCharacters(){
+        parenChecker = new ParenChecker("wuiebfui(ew)balhwbef");
+        Assert.assertTrue(parenChecker.checkCharacters());
+    }
+
+    @Test
+    public void checkCharacters2(){
         parenChecker = new ParenChecker("wuiebfui(ew)b((alhwbef)");
-        Assert.assertFalse(parenChecker.checkParen());
+        Assert.assertFalse(parenChecker.checkCharacters());
+    }
+
+    @Test
+    public void checkCharacters3(){
+        parenChecker = new ParenChecker("wuiebfui(ew)b{a{l}hwbef)");
+        Assert.assertFalse(parenChecker.checkCharacters());
+    }
+
+    @Test
+    public void checkCharacters4(){
+        parenChecker = new ParenChecker("wuiebfui(ew)b{al}hwbef)");
+        Assert.assertTrue(parenChecker.checkCharacters());
     }
 
 }
