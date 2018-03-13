@@ -2,14 +2,13 @@ package io.zipcoder;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
 
 public class WC {
 
-    private Iterator<String> si;
+    // private Iterator<String> si;
     private String entireFile;// = WC.class.getResource("someTextFile.txt").getFile();
 
     // Nullary constructor for testing
@@ -26,20 +25,16 @@ public class WC {
         }
     }
 
-    // NOTED OUT BECAUSE STRING ITERATOR IS BLEH
 //    public WC(Iterator<String> si) {
 //        this.si = si;
 //    }
 
     public void logic() {
         HashMap<String, Integer> wordsAndAmounts = new HashMap<String, Integer>();
-        String[] arrayOfWords = entireFile.split(" ");
-        for (int j = 0; j < arrayOfWords.length; j++) {
-            String currentWord = arrayOfWords[j];
-            currentWord = currentWord.toLowerCase();
-            if (currentWord.charAt(currentWord.length()-1) == '.') {
-                currentWord = arrayOfWords[j].substring(0, currentWord.length()-1);
-            }
+        String[] arrayOfWords = entireFile.split("\\s+");
+        for (String arrayOfWord : arrayOfWords) {
+            String currentWord = arrayOfWord;
+            currentWord = wordCleaner(currentWord);
             int count = wordsAndAmounts.containsKey(currentWord) ? wordsAndAmounts.get(currentWord) : 0;
             wordsAndAmounts.put(currentWord, count + 1);
         }
@@ -50,10 +45,8 @@ public class WC {
         }
     }
 
-    // psvm temporarily made for testing purposes
-    public static void main(String[] args) {
-        WC wc = new WC(WC.class.getResource("/someTextFile.txt").getFile());
-        wc.logic();
+    private String wordCleaner(String word) {
+        return word.replaceAll("[^a-zA-Z ]", "").toLowerCase();
     }
 
 }
