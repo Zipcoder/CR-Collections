@@ -3,6 +3,7 @@ package io.zipcoder;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.*;
+import static java.util.stream.Collectors.toMap;
 
 public class WC {
     private Iterator<String> si;
@@ -35,6 +36,8 @@ public class WC {
             if (!answer.containsKey(word)) answer.put(word, 1);
             else answer.put(word, answer.get(word) + 1);
         }
+        answer.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, HashMap::new));
         return answer;
     }
 }

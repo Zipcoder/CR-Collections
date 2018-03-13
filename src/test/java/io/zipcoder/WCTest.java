@@ -40,4 +40,15 @@ public class WCTest {
         Assert.assertEquals(expected, wc.wordCount());
     }
 
+    @Test
+    public void duckDuckGooseWordCount2(){
+        wc = new WC(WC.class.getResource("/duckduck2.txt").getFile());
+        HashMap<String, Integer> expected = new HashMap<>();
+        expected.put("duck", 4);
+        expected.put("heron", 3);
+        expected.put("chicken", 2);
+        expected.put("goose", 1);
+        Assert.assertEquals(expected, wc.wordCount());
+    }
+
 }
