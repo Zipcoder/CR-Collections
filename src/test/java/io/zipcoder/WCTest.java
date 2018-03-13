@@ -16,12 +16,12 @@ public class WCTest {
         testOutput.put("TOTAL WORDS",11);
         testOutput.put("birb",3);
         testOutput.put("stinky",2);
-        testOutput.put("henlo",1);
-        testOutput.put("go",1);
-        testOutput.put("eat",1);
-        testOutput.put("some",1);
         testOutput.put("bird",1);
+        testOutput.put("eat",1);
+        testOutput.put("go",1);
+        testOutput.put("henlo",1);
         testOutput.put("seed",1);
+        testOutput.put("some",1);
 
     }
 
@@ -32,11 +32,9 @@ public class WCTest {
 
         //When
         ArrayList <Map.Entry<String,Integer>> expected = new ArrayList<>(testOutput.entrySet());
-        LinkedList <Map.Entry<String,Integer>> actual = testCounter.countWords();
+        LinkedList <Map.Entry<String,Integer>> actual = testCounter.countWordsWithLinking();
 
         //Then
-        System.out.println(actual);
-        System.out.println(expected);
         Assert.assertEquals(expected,actual);
 
     }
