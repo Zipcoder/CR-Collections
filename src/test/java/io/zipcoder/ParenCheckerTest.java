@@ -55,18 +55,6 @@ public class ParenCheckerTest {
     @Test
     public void isBalancedBrackets2(){
         ParenChecker parenChecker = new ParenChecker();
-        String str = "()}{()}{(){}()[]()";
-
-        boolean expected = false;
-        boolean actual = parenChecker.isPairedParenthesis(str);
-
-        Assert.assertEquals(expected, actual);
-
-    }
-
-    @Test
-    public void isBalancedBrackets3(){
-        ParenChecker parenChecker = new ParenChecker();
         String str = "[](){}()()()()";
 
         boolean expected = true;
@@ -77,7 +65,7 @@ public class ParenCheckerTest {
     }
 
     @Test
-    public void isBalancedBrackets4(){
+    public void isBalancedBrackets3(){
         ParenChecker parenChecker = new ParenChecker();
         String str = "({})(<>)()()()";
 
