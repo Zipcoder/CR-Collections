@@ -35,4 +35,22 @@ public class ParenCheckerTest {
         Assert.assertFalse(parenChecker.checkParen());
     }
 
+    @Test
+    public void checkCharacters(){
+        parenChecker = new ParenChecker("wef'wfe'wfe");
+        Assert.assertTrue(parenChecker.checkCharacters());
+    }
+
+    @Test
+    public void checkCharacters2(){
+        parenChecker = new ParenChecker("w\"ef\"wfe\"wfe");
+        Assert.assertFalse(parenChecker.checkCharacters());
+    }
+
+    @Test
+    public void checkCharacters3(){
+        parenChecker = new ParenChecker("w\"e'f\"wf'e\"wfe");
+        Assert.assertFalse(parenChecker.checkCharacters());
+    }
+
 }
