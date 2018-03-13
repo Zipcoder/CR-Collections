@@ -37,9 +37,11 @@ public class ParenCheckerTest {
     @Test
     public void surroundCheck2(){
         ParenChecker parenChecker = new ParenChecker();
-        parenChecker.getPunctuationPairs().push("]");
-        parenChecker.getPunctuationPairs().push("}");
         parenChecker.getPunctuationPairs().push("{");
+        parenChecker.getPunctuationPairs().push("{");
+        parenChecker.getPunctuationPairs().push("(");
+        parenChecker.getPunctuationPairs().push("}");
+        parenChecker.getPunctuationPairs().push("}");
         boolean expected = false;
         boolean actual = parenChecker.surround();
         Assert.assertEquals(expected, actual);
