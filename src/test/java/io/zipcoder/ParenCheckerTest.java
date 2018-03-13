@@ -53,4 +53,10 @@ public class ParenCheckerTest {
         Assert.assertFalse(parenChecker.checkCharacters());
     }
 
+    @Test
+    public void checkCharacters4(){
+        parenChecker = new ParenChecker("w(e}fwfewfe");
+        Assert.assertFalse(parenChecker.checkCharacters());
+    }
+
 }
