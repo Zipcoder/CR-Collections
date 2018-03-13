@@ -8,36 +8,18 @@ public class ParenChecker {
 
     Stack<Character> stack = new Stack<Character>();
 
-    public ParenChecker(){
+    public ParenChecker() {
 
     }
 
-    public boolean parenChecker(String value){
+    public boolean parenChecker(String value) {
 
-        for(int i = 0; i < value.length(); i++){
+        for (int i = 0; i < value.length(); i++) {
             char c = value.charAt(i);
-            if(c == '('){
+            if (c == '(') {
                 stack.push(c);
-            } else if (c == ')'){
-                if(stack.isEmpty()){
-                    return false;
-                }
-                stack.pop();
-            }
-
-        }
-        return stack.isEmpty();
-    }
-
-//TODO need to add " and ' to method maybe in a seperate if statment
-    public boolean isMatchChecker(String value){
-        for(int i = 0; i<value.length();i++){
-            char c = value.charAt(i);
-            //question about last two comparisons
-            if(c == '(' || c == '[' || c== '<'|| c == '{'){
-                stack.push(c);
-            }else if(c==')' || c==']' || c== '>' || c == '}'){
-                if(stack.isEmpty()){
+            } else if (c == ')') {
+                if (stack.isEmpty()) {
                     return false;
                 }
                 stack.pop();
@@ -48,6 +30,26 @@ public class ParenChecker {
     }
 
 
+    public boolean pairParen(String value) {
+        for (int i = 0; i < value.length(); i++) {
+            char c = value.charAt(i);
+            if (c == '(' || c == '[' || c == '<' || c == '{' || c == '\'' || c == '\"') {
+                stack.push(c);
+            } else if (c == ')' || c == ']' || c == '>' || c == '}' || c == '\'' || c == '\"') {
+                if (stack.isEmpty()) {
+                    return false;
+                }
+                char lastValue = stack.peek();
+                if (c == ')' && lastValue == '(' || c == '>' && lastValue == '<' || c == '"' && lastValue == '"' || c == '\'' && lastValue == '\'') {
+                    stack.pop();
+                }
+            }
+        }
+        return stack.isEmpty();
+    }
 }
 
+//PseudoCode
+//the lastValue equals the stack.peek(); the peek: Looks at the object at the top of this stack without removing it
+//from the stack.
 
