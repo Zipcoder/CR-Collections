@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 public class ParenCheckerTest {
+
     private ParenChecker checker;
 
     @Before
@@ -19,6 +20,17 @@ public class ParenCheckerTest {
         Assert.assertTrue(result);
     }
 
+    @Test
+    public void checkBraceBaseCase() {
+        boolean result = this.checker.check("[[<'cats'>''''][{}][()]]");
+        Assert.assertTrue(result);
+    }
+
+    @Test
+    public void checkExtraBraceBaseCase() {
+        boolean result = this.checker.check("[[<cats>>][{}][()]]");
+        Assert.assertFalse(result);
+    }
     @Test //left char left paren, final check checks to see if stack is empty
     public void checkFailingBaseCase() {
         boolean result = this.checker.check("()(");
@@ -33,10 +45,9 @@ public class ParenCheckerTest {
 
     @Test //ignore other char checks
     public void checkOtherCharsIgnoredBaseCase() {
-        boolean result = this.checker.check("(jklm86&>>)");
+        boolean result = this.checker.check("(jklm86&)");
         Assert.assertTrue(result);
     }
 }
-
 
 

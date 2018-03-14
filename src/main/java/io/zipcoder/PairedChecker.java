@@ -29,4 +29,21 @@ public class PairedChecker {
 
         return stack.isEmpty();
     }
+
+    /**
+     * Specific for opening and closing chars that are the same char, ie "" and ''
+     * @param quote token used for both opening and closing
+     * @param input string to scan
+     * @return true if the tokens are evenly distributed in the string
+     */
+    public boolean checkSame(Character quote, String input) {
+        int count = 0;
+        for(int i = 0; i < input.length(); i++){
+            if( quote.equals(input.charAt(i))){
+                count++;
+            }
+        }
+        return count%2 == 0;
+    }
+
 }
