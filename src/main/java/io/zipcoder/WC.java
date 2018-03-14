@@ -3,6 +3,7 @@ package io.zipcoder;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.*;
+import java.util.TreeMap;
 
 /**
 @TODO
@@ -19,8 +20,13 @@ public class WC {
     private Iterator<String> si;
     private TreeMap<String, Integer> book;
 
-    public WC(String fileName) {
-        try { //As soon as the scanner recieves my book(map) it will get
+    public static void main(String[] args) {
+        WC wordCounts = new WC("/Users/kieranthomas/Dev/CR-MesoLabs-Collections-EncapsulativeCharacters/src/main/resources/aGoodBookFile.txt");
+        wordCounts.descendAndPrintText();
+    }
+
+    public WC(String fileName) { //nullary constructor
+        try { //As soon as the scanner receives my book(map) it will get
             this.book = new TreeMap<>();
             this.si = new Scanner(new FileReader(fileName)).useDelimiter("[^a-zA-Z]+");
             this.metaCharRemover();
@@ -30,20 +36,15 @@ public class WC {
         }
     }
 
-    public static void main(String[] args) {
-        WC wordCounts = new WC(WC.class.getResource("/").getFile());
-        wordCounts.descendAndPrintText();
-    }
-
     public WC(Iterator<String> stringIterator) {
         this.si = stringIterator;
     }
 
-    private void metaCharRemover() {
+    public void metaCharRemover() {
         while (si.hasNext()) { //while the iterator has the next line do this stuff below it
             String word = si.next().toLowerCase().replaceAll("[\"^${}().+&~!@#%*]", ""); //change all characters within file to lower case and replace all metacharacters with nothing so that only the words are counted when its time to count
             Integer wordCount = book.getOrDefault(word, 0); //set my default value for word count to 0
-            book.put(word, (wordCount + 1)); //insert my word and word count into my value
+            book.put(word, (wordCount + 1)); //insert my word and word count into my map
         }
     }
 
