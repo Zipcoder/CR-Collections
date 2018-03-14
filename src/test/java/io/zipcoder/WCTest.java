@@ -8,4 +8,6 @@ import java.util.Arrays;
 
 public class WCTest {
 
+    public WCTest() {
+    }
 }
