@@ -1,7 +1,5 @@
 package io.zipcoder;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.*;
@@ -19,22 +17,39 @@ import java.util.*;
 
 public class WC {
     private Iterator<String> si;
+    private TreeMap<String, Integer> book;
 
     public WC(String fileName) {
-        try {
+        try { //As soon as the scanner recieves my book(map) it will get
+            this.book = new TreeMap<>();
             this.si = new Scanner(new FileReader(fileName)).useDelimiter("[^a-zA-Z]+");
+            this.metaCharRemover();
         } catch (FileNotFoundException e) {
-            System.out.println(fileName + " Does Not Exist");
+            System.out.println(fileName + "Does Not Exist");
             System.exit(-1);
         }
     }
 
-    public WC(Iterator<String> si) {
-        this.si = si;
+    public static void main(String[] args) {
+        WC wordCounts = new WC(WC.class.getResource("/").getFile());
+        wordCounts.descendAndPrintText();
     }
 
-    public Map<String, Integer> countWords() {
-        Map<String, Integer> expectedCount = new HashMap<>();
-        si.next()
+    public WC(Iterator<String> stringIterator) {
+        this.si = stringIterator;
+    }
+
+    private void metaCharRemover() {
+        while (si.hasNext()) { //while the iterator has the next line do this stuff below it
+            String word = si.next().toLowerCase().replaceAll("[\"^${}().+&~!@#%*]", ""); //change all characters within file to lower case and replace all metacharacters with nothing so that only the words are counted when its time to count
+            Integer wordCount = book.getOrDefault(word, 0); //set my default value for word count to 0
+            book.put(word, (wordCount + 1)); //insert my word and word count into my value
+        }
+    }
+
+    private void descendAndPrintText() { //stream is pulling out JUST my words in sequential order first before sorting them in descending order, reverse is so that the highest number will print first and get lower accordingly
+        String newBook = "";
+        newBook += book.entrySet().stream().sorted(Map.Entry.<String, Integer>comparingByValue().reversed()) + "\n";
+        System.out.println(newBook);
     }
 }
