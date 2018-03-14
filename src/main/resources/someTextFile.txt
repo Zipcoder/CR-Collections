@@ -1,0 +1,6 @@
+case test
+call
+apple apple apple test
+test
+case sweep
+sweep!
