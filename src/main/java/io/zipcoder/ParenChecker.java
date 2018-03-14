@@ -38,7 +38,6 @@ public class ParenChecker {
                 stack.push(currentChar);
                 continue;
             }
-
             // if currentChar is closing but there's no opening in stack, return false
             if (currentChar == closingChar) {
                 if(stack.isEmpty()) {
