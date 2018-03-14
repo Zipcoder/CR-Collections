@@ -35,7 +35,6 @@ public class ParenChecker {
                     myStack.pop();
                 }
 
-
             }
         return myStack.isEmpty();
     }
