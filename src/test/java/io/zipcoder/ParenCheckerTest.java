@@ -26,6 +26,24 @@ public class ParenCheckerTest {
         Assert.assertTrue(result);
     }
 
+    @Test //happy path even quote
+    public void checkDoubleQuoteBaseCase() {
+        boolean result = this.checker.check("\"\"\"\"\"\"");
+        Assert.assertTrue(result);
+    }
+
+    @Test //happy path even single quote
+    public void checkSingleQuoteBaseCase() {
+        boolean result = this.checker.check("\'\'\'\'\'\'");
+        Assert.assertTrue(result);
+    }
+
+    @Test //happy path even mixed quote
+    public void checkMixedQuoteBaseCase() {
+        boolean result = this.checker.check("\"\'\'\'\'\'\'\"\"\"\"\"");
+        Assert.assertTrue(result);
+    }
+
     @Test
     public void checkExtraBraceBaseCase() {
         boolean result = this.checker.check("[[<cats>>][{}][()]]");

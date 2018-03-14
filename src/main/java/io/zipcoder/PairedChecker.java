@@ -10,6 +10,7 @@ public class PairedChecker {
      * @param closing token
      * @param input string to scan
      * @return true if all opening tokens match all closing tokens
+     * Catch exception and return false if try to pop off an empty stack
      */
     public boolean check(Character opening, Character closing, String input) {
         Stack<Character> stack = new Stack<Character>();
@@ -45,5 +46,4 @@ public class PairedChecker {
         }
         return count%2 == 0;
     }
-
 }
