@@ -47,8 +47,10 @@ public class WC {
     }
 
     public static void main(String[] args) {
-        WC wc = new WC("/Users/kaitrinahigh/Downloads/47366-0.txt");
-        wc.print();
+        //WC wc = new WC("/Users/kaitrinahigh/Downloads/47366-0.txt");
+        WC testFile = new WC("/Users/kaitrinahigh/Dev/CR-MesoLabs-Collections-EncapsulativeCharacters/src/main/resources/someTextFile.txt");
+        testFile.print();
+
     }
 }
 
