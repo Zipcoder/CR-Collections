@@ -2,10 +2,8 @@ package io.zipcoder;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.Iterator;
-import java.util.Scanner;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
+
 public class WC {
     private Iterator<String> stringIterator;
     private TreeMap<String, Integer> map;
@@ -14,23 +12,14 @@ public class WC {
         try {
             this.stringIterator = new Scanner(new FileReader(fileName));
             this.map = new TreeMap<String, Integer>();
-            //parsing file in constructor, already has scanner for the file, might as well parse as
-            // soon as recieve, not sure if best practice
-            this.parse();
+            this.parseAndCountWords();
         } catch (FileNotFoundException e) {
             System.out.println(fileName + " Does Not Exist");
             System.exit(-1);
         }
     }
 
-    //never used
-//    public WC(Iterator<String> stringIterator) {
-//        this.stringIterator = stringIterator;
-//        this.map = new TreeMap<String, Integer>();
-//        this.parse();
-//    }
-
-    private void parse() {
+    private void parseAndCountWords() {
         while (this.stringIterator.hasNext()) {
             String s = this.stringIterator.next().toLowerCase().replaceAll("[^\\w]", "");
             Integer count = this.map.getOrDefault(s, 0);
@@ -38,11 +27,23 @@ public class WC {
         }
     }
 
-    public void print() {
+
+    public String toString() {
+        ArrayList<Map.Entry<String, Integer>> sortedValues = new ArrayList<>();
         this.map.entrySet()
                 .stream()
                 .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
-                .forEach(System.out::println);
+                .forEach(sortedValues::add);
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry<String, Integer> entry : sortedValues) {
+            sb.append(entry.getKey()).append(" = ").append(entry.getValue()).append("\n");
+        }
+
+        return sb.toString();
+    }
+
+    public void print() {
+        System.out.println(this.toString());
     }
 
     public static void main(String[] args) {
