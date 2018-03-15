@@ -66,6 +66,7 @@ public class WC {
             printedList.append(" times\n");
         }
         return printedList.toString();
+
     }
 
 

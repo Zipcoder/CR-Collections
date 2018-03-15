@@ -11,7 +11,7 @@ public class ParenCheckerTest {
         String test = "()";
         boolean expected = true;
         //When
-        boolean actual = parenCheckerTest.verifyParensArePaired(test);
+        boolean actual = parenCheckerTest.verifyOpeningCharactersHaveAClosingOne(test);
         Assert.assertEquals(expected,actual);
     }
 
@@ -21,7 +21,7 @@ public class ParenCheckerTest {
         String test = "((";
         boolean expected = false;
         //When
-        boolean actual = parenCheckerTest.verifyParensArePaired(test);
+        boolean actual = parenCheckerTest.verifyOpeningCharactersHaveAClosingOne(test);
         Assert.assertEquals(expected,actual);
     }
 
@@ -31,7 +31,7 @@ public class ParenCheckerTest {
         String test = ")(";
         boolean expected = false;
         //When
-        boolean actual = parenCheckerTest.verifyParensArePaired(test);
+        boolean actual = parenCheckerTest.verifyOpeningCharactersHaveAClosingOne(test);
         Assert.assertEquals(expected,actual);
     }
 
@@ -41,7 +41,7 @@ public class ParenCheckerTest {
         String test = "(";
         boolean expected = false;
         //When
-        boolean actual = parenCheckerTest.verifyParensArePaired(test);
+        boolean actual = parenCheckerTest.verifyOpeningCharactersHaveAClosingOne(test);
         Assert.assertEquals(expected,actual);
     }
 
@@ -55,7 +55,7 @@ public class ParenCheckerTest {
         Assert.assertEquals(expected,actual);
     }
     @Test
-    public void verifyBracketsHaveOpenAndClosingOneTest(){
+    public void verifyCurlyBraceHaveOpenAndClosingOneTest(){
         //Given
         String test = "{}";
         boolean expected = true;
@@ -63,9 +63,8 @@ public class ParenCheckerTest {
         boolean actual = parenCheckerTest.verifyOpeningCharactersHaveAClosingOne(test);
         Assert.assertEquals(expected,actual);
     }
-
     @Test
-    public void verifyDiamondsHaveOpenAndClosingOneTest(){
+    public void verifyBracketHaveOpenAndClosingOneTest(){
         //Given
         String test = "[]";
         boolean expected = true;
@@ -75,9 +74,19 @@ public class ParenCheckerTest {
     }
 
     @Test
+    public void verifyDiamondsHaveOpenAndClosingOneTest(){
+        //Given
+        String test = "<>";
+        boolean expected = true;
+        //When
+        boolean actual = parenCheckerTest.verifyOpeningCharactersHaveAClosingOne(test);
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Test
     public void verifyDiamondsHaveOpenAndClosingOneTestFail(){
         //Given
-        String test = "[";
+        String test = "<";
         boolean expected = false;
         //When
         boolean actual = parenCheckerTest.verifyOpeningCharactersHaveAClosingOne(test);
@@ -87,7 +96,7 @@ public class ParenCheckerTest {
     @Test
     public void verifyDoubleQuotesHaveOpenAndClosingOneTest(){
         //Given
-        String test = "\"Hi\"";
+        String test = "\"\"";
         boolean expected = true;
         //When
         boolean actual = parenCheckerTest.verifyOpeningCharactersHaveAClosingOne(test);
@@ -97,7 +106,7 @@ public class ParenCheckerTest {
     @Test
     public void verifySingleQuotesHaveOpenAndClosingOneTest(){
         //Given
-        String test = "'Merp'";
+        String test = "''";
         boolean expected = true;
         //When
         boolean actual = parenCheckerTest.verifyOpeningCharactersHaveAClosingOne(test);
