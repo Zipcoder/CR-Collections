@@ -9,8 +9,9 @@ public class ParenChecker {
     public Stack<String> punctuationPairs;
     EnumSet<SpecialCharactersEnum> pairs = EnumSet.allOf(SpecialCharactersEnum.class);
 
+
     ParenChecker(){
-        this.punctuationPairs = new Stack<String>();
+        this.punctuationPairs = new Stack<>();
     }
 
     ParenChecker(Stack<String> punctuationPairs){
@@ -21,11 +22,8 @@ public class ParenChecker {
         return punctuationPairs;
     }
 
-    public EnumSet<SpecialCharactersEnum> getPairs() {
-        return pairs;
-    }
-
     public boolean parenCheck(){
+
         boolean paired = false;
         int begin = punctuationPairs.search(SpecialCharactersEnum.PARENTHESIS.getBeginChar());
         int end = punctuationPairs.search(SpecialCharactersEnum.PARENTHESIS.getEndChar());
@@ -34,22 +32,29 @@ public class ParenChecker {
     }
 
     public boolean surround(){
-        boolean paired = false;
+        boolean paired = true;
         ArrayList<Integer> beginChar = new ArrayList<>();
         ArrayList<Integer> endChar = new ArrayList<>();
         for(SpecialCharactersEnum character: pairs) {
-            Integer begin = punctuationPairs.search(character.getBeginChar());
-            if(begin >= 0) beginChar.add(begin);
-            Integer end = punctuationPairs.search(character.getEndChar());
-            if(end >= 0) endChar.add(end);
+            Integer begin = punctuationPairs.indexOf(character.getBeginChar());
+            Integer end = punctuationPairs.indexOf(character.getEndChar());
+            while(begin >= 0) {
+                beginChar.add(begin);
+                begin = punctuationPairs.indexOf(character.getBeginChar(), begin+1);
+            }
+            while(end >= 0) {
+                endChar.add(end);
+                end = punctuationPairs.indexOf(character.getEndChar(), end+1);
+            }
         }
             if (beginChar.size() != endChar.size()) {
                 paired = false;
             } else if(beginChar.size() == (endChar.size())) {
                 for (int i = 0; i < beginChar.size(); i++) {
-                    if (endChar.get(i) > beginChar.get(i)) {
+                    if (endChar.get(i) < beginChar.get(i)) {
                         paired = false;
-                    } else if (endChar.get(i) < beginChar.get(i)) {
+                        break;
+                    } else if (endChar.get(i) > beginChar.get(i)) {
                         paired = true;
                     }
                 }
