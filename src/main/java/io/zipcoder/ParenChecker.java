@@ -31,35 +31,35 @@ public class ParenChecker {
         return paired;
     }
 
-    public boolean surround(){
+    public boolean surround() {
         boolean paired = true;
         ArrayList<Integer> beginChar = new ArrayList<>();
         ArrayList<Integer> endChar = new ArrayList<>();
-        for(SpecialCharactersEnum character: pairs) {
+        for (SpecialCharactersEnum character : pairs) {
             Integer begin = punctuationPairs.indexOf(character.getBeginChar());
             Integer end = punctuationPairs.indexOf(character.getEndChar());
-            while(begin >= 0) {
+            while (begin >= 0) {
                 beginChar.add(begin);
-                begin = punctuationPairs.indexOf(character.getBeginChar(), begin+1);
+                begin = punctuationPairs.indexOf(character.getBeginChar(), begin + 1);
             }
-            while(end >= 0) {
+            while (end >= 0) {
                 endChar.add(end);
-                end = punctuationPairs.indexOf(character.getEndChar(), end+1);
+                end = punctuationPairs.indexOf(character.getEndChar(), end + 1);
             }
-        }
-            if (beginChar.size() != endChar.size()) {
-                paired = false;
-            } else if(beginChar.size() == (endChar.size())) {
-                for (int i = 0; i < beginChar.size(); i++) {
-                    if (endChar.get(i) < beginChar.get(i)) {
-                        paired = false;
-                        break;
-                    } else if (endChar.get(i) > beginChar.get(i)) {
-                        paired = true;
-                    }
+            if (endChar.size() == 0 || beginChar.size()==0) {
+                return false;
+            }
+            if (endChar.size() > 0 && beginChar.size()>0) {
+                if (endChar.get(endChar.size() - 1) < beginChar.get(endChar.size() - 1)) {
+                    paired = false;
+                } else {
+                    paired = true;
+                }
+                if (beginChar.size() != endChar.size()) {
+                    paired = false;
                 }
             }
+        }
         return paired;
     }
-
 }

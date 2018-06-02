@@ -9,18 +9,12 @@ public class ParenCheckerTest {
 
     @Test
     public void parenCheckTest(){
-        //Given
         ParenChecker parenCheck = new ParenChecker();
         parenCheck.getPunctuationPairs().push("(");
         parenCheck.getPunctuationPairs().push("a");
         parenCheck.getPunctuationPairs().push(")");
 
-        //you look through stack for ( & ), you expect to find
-        boolean expected = true;
-        //Then : you look through the stack looking for a ( for each ), and you will find
-        boolean actual = parenCheck.parenCheck();
-
-        Assert.assertEquals(expected, actual);
+        Assert.assertTrue(parenCheck.parenCheck());
     }
 
     @Test
@@ -29,9 +23,8 @@ public class ParenCheckerTest {
         parenChecker.getPunctuationPairs().push("}");
         parenChecker.getPunctuationPairs().push(" ");
         parenChecker.getPunctuationPairs().push("{");
-        boolean expected = false;
-        boolean actual = parenChecker.surround();
-        Assert.assertEquals(expected, actual);
+
+        Assert.assertFalse(parenChecker.surround());
     }
 
     @Test
@@ -43,8 +36,45 @@ public class ParenCheckerTest {
         parenChecker.getPunctuationPairs().push(")");
         parenChecker.getPunctuationPairs().push("}");
         parenChecker.getPunctuationPairs().push("]");
-        boolean expected = true;
-        boolean actual = parenChecker.surround();
-        Assert.assertEquals(expected, actual);
+
+        Assert.assertTrue(parenChecker.surround());
+    }
+
+    @Test
+    public void surroundCheck3(){
+        ParenChecker parenChecker = new ParenChecker();
+        parenChecker.getPunctuationPairs().push("}");
+        parenChecker.getPunctuationPairs().push("{");
+        parenChecker.getPunctuationPairs().push(")");
+        parenChecker.getPunctuationPairs().push("{");
+        parenChecker.getPunctuationPairs().push("]");
+        parenChecker.getPunctuationPairs().push("[");
+
+        Assert.assertFalse(parenChecker.surround());
+    }
+
+    @Test
+    public void surroundCheck4(){
+        ParenChecker parenChecker = new ParenChecker();
+        parenChecker.getPunctuationPairs().push("}");
+        parenChecker.getPunctuationPairs().push("{");
+        parenChecker.getPunctuationPairs().push(")");
+        parenChecker.getPunctuationPairs().push("{");
+        parenChecker.getPunctuationPairs().push("]");
+
+        Assert.assertFalse(parenChecker.surround());
+    }
+
+    @Test
+    public void surroundCheck5(){
+        ParenChecker parenChecker = new ParenChecker();
+        parenChecker.getPunctuationPairs().push("{");
+        parenChecker.getPunctuationPairs().push("}");
+        parenChecker.getPunctuationPairs().push("(");
+        parenChecker.getPunctuationPairs().push(")");
+        parenChecker.getPunctuationPairs().push("[");
+        parenChecker.getPunctuationPairs().push("]");
+
+        Assert.assertTrue(parenChecker.surround());
     }
 }
