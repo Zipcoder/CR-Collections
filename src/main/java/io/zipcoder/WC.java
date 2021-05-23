@@ -11,7 +11,7 @@ import static java.math.BigInteger.valueOf;
 public class WC {
 
     private Iterator<String> si;
-    private LinkedHashMap<String, Integer> wordCount;
+    private HashMap<String, Integer> wordCount;
 
     public WC(String fileName) {
         try {
@@ -20,7 +20,7 @@ public class WC {
             System.out.println(fileName + " Does Not Exist");
             System.exit(-1);
         }
-        this.wordCount = new LinkedHashMap<>();
+        this.wordCount = new HashMap<>();
     }
 
     public WC(Iterator<String> si) {
@@ -43,7 +43,7 @@ public class WC {
 
     public StringBuilder printMap(){
         StringBuilder count = new StringBuilder();
-        List<Map.Entry<String,Integer>> list = new ArrayList<>(wordCount.entrySet());
+        ArrayList<Map.Entry<String,Integer>> list = new ArrayList<>(wordCount.entrySet());
         list.sort(Comparator.comparing(Map.Entry::getValue));
         Collections.reverse(list);
         for(Map.Entry<String,Integer> entry: list){

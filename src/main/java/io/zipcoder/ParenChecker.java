@@ -51,12 +51,10 @@ public class ParenChecker {
             }
             if (endChar.size() > 0 && beginChar.size()>0) {
                 if (endChar.get(endChar.size() - 1) < beginChar.get(endChar.size() - 1)) {
-                    paired = false;
-                } else {
-                    paired = true;
+                    return false;
                 }
                 if (beginChar.size() != endChar.size()) {
-                    paired = false;
+                    return false;
                 }
             }
         }
